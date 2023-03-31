@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/ProcrastinatorRoom/Scenes/Room.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/FlappyTrash/Scenes/FlappyTrash.unity
+    guid: ada03d787c05dae41a1ea2fcfcb782f0
   m_configObjects: {}
