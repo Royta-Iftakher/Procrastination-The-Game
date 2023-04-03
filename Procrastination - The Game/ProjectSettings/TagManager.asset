@@ -7,6 +7,8 @@ TagManager:
   - Scoring
   - Obstacle
   - LoadScene
+  - Ground
+  - Door
   layers:
   - Default
   - TransparentFX
