@@ -9,6 +9,9 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get { return _instance; } }
 
     public GameObject eventSystemPrefab;
+    public bool spawned = false;
+    public bool gameFinished = false;
+    private GameObject[] allObjects;
 
     void Awake()
     {
@@ -25,14 +28,7 @@ public class GameManager : MonoBehaviour
     {
         if (!GameObject.Find("EventSystem"))
         {
-            if (eventSystemPrefab != null)
-            {
-                Instantiate(eventSystemPrefab);
-            }
-            else
-            {
-                Debug.LogError("EventSystem prefab is null.");
-            }
+            Instantiate(eventSystemPrefab);
         }
     }
 
@@ -50,14 +46,36 @@ public class GameManager : MonoBehaviour
     {
         if (!GameObject.Find("EventSystem"))
         {
-            if (eventSystemPrefab != null)
-            {
-                Instantiate(eventSystemPrefab);
-            }
-            else
-            {
-                Debug.LogError("EventSystem prefab is null.");
+            Instantiate(eventSystemPrefab);
+        }
+
+        // spawn the player at the designated spawn point
+
+    }
+
+    public void sceneLoader() 
+    {
+        allObjects = GameObject.FindObjectsOfType<GameObject>();
+        foreach (GameObject obj in allObjects) {
+            if (obj.name != "GameManager") { 
+                obj.SetActive(false);
             }
         }
     }
+
+    public void sceneFinisher()
+    {
+        foreach(GameObject obj in allObjects) {
+            obj.SetActive(true);
+        }
+    }
+
+    void Update()
+    {
+        if(gameFinished == true) {
+            gameFinished = false;
+            sceneFinisher();
+        }
+    }
+    
 }

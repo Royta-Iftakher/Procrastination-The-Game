@@ -152,6 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae79f9d99372a6b438f800230f434b9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prompt: {fileID: 0}
   scoreText: {fileID: 1474871343}
   instructions: {fileID: 1864223225}
   playButton: {fileID: 892178073}
@@ -1041,7 +1042,7 @@ GameObject:
   - component: {fileID: 1256735113}
   m_Layer: 0
   m_Name: Canvas
-  m_TagString: Untagged
+  m_TagString: EditorOnly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

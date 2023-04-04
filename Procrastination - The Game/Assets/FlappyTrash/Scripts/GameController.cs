@@ -6,6 +6,7 @@ public class GameController : MonoBehaviour
 {
     private Player player;
     private Spawner spawner;
+    private GameManager manager;
 
     public Text scoreText;
     public Text instructions;
@@ -13,6 +14,7 @@ public class GameController : MonoBehaviour
     public GameObject gameOver;
     public GameObject gameWin;
     public bool finishedGame = false;
+    
     public bool lose = false;
     public int score { get; private set; }
     private void Awake()
@@ -21,6 +23,7 @@ public class GameController : MonoBehaviour
         Application.targetFrameRate = 60;
         player = FindObjectOfType<Player>();
         spawner = FindObjectOfType<Spawner>();
+        manager = FindObjectOfType<GameManager>();
         gameOver.SetActive(false);
         gameWin.SetActive(false);
 
@@ -96,7 +99,9 @@ public class GameController : MonoBehaviour
     public void RestartGame()
     {
     // Reload the current scene
-    SceneManager.LoadScene(0);
+    manager.gameFinished = true;
+    SceneManager.UnloadSceneAsync("FlappyTrash");
+    
     }
 
 }

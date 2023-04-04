@@ -8,18 +8,16 @@ public class Prompt : MonoBehaviour
     public GameObject promptCanvas;
     public string sceneName;
     public GameObject player;
-    
+    public GameManager manager;
+
     void Start()
     {
+        manager = FindObjectOfType<GameManager>();
         hidePrompt();
     }
     public void goToScene() {
-        GameObject[] allObjects = GameObject.FindObjectsOfType<GameObject>();
-        foreach (GameObject obj in allObjects)
-        {
-            obj.SetActive(false);
-        }
-
+        hidePrompt();
+        manager.sceneLoader();
         SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
     }
     public void cancel() {
