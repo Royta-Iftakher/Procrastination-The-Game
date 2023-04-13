@@ -53,6 +53,7 @@ public class Typer : MonoBehaviour
         if (Input.anyKeyDown)
         {
             string keysPressed = Input.inputString;
+            keysPressed = keysPressed.ToLower();
 
             if (keysPressed.Length == 1) 
             {

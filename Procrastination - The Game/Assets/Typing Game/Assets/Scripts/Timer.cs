@@ -5,21 +5,27 @@ using TMPro;
 
 public class Timer : MonoBehaviour
 {
-
-    [Header("Component")]
+    [SerializeField] public GameObject endingScreen;
+    [SerializeField] public GameObject TypingScreen;
     public TextMeshProUGUI timerText;
+    [SerializeField] AudioSource audio;
 
-    [Header("Timer Settings")]
     public float currentTime;
     public bool countDown = true;
 
     public bool hasLimit;
     public float timerLimit;
 
+    public Color orangeColor;
+    
+
     // Start is called before the first frame update
     void Start()
     {
-        
+          if (audio == null)
+            audio = GetComponent<AudioSource>();
+         
+        orangeColor = new Color(1.0f, 0.5f, 0.0f, 1.0f);
     }
 
     // Update is called once per frame
@@ -30,9 +36,15 @@ public class Timer : MonoBehaviour
         if(hasLimit && ((countDown && currentTime <= timerLimit) || (!countDown && currentTime >= timerLimit)))
         {
             currentTime = timerLimit;
+            AudioSource.PlayClipAtPoint(audio.clip, transform.position);
             SetTimerText();
             timerText.color = Color.red;
             enabled = false;
+            endScreen();
+        }
+
+        if (currentTime <= 10 ) {
+            timerText.color = Color.Lerp(timerText.color, orangeColor, Time.deltaTime);
         }
 
         SetTimerText();
@@ -40,6 +52,12 @@ public class Timer : MonoBehaviour
 
     private void SetTimerText() 
     {
-        timerText.text = currentTime.ToString("0.00");
+        timerText.text = currentTime.ToString("00.##");
+    }
+
+    private void endScreen() 
+    {
+        TypingScreen.SetActive(false);
+        endingScreen.SetActive(true);
     }
 }
