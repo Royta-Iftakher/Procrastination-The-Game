@@ -105,6 +105,8 @@ MonoBehaviour:
   jumpPressed: 0
   jumpForce: 500
   isGrounded: 1
+  cameraFollowSpeed: 5
+  cameraHeightOffset: 3
 --- !u!50 &1544166197338378336
 Rigidbody2D:
   serializedVersion: 4

@@ -12,12 +12,17 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] bool jumpPressed = false;
     [SerializeField] float jumpForce = 500.0f;
     [SerializeField] bool isGrounded = true;
+    [SerializeField] float cameraFollowSpeed = 5.0f;
+    [SerializeField] float cameraHeightOffset = 3.0f;
+    private Camera mainCamera;
+
     // Start is called before the first frame update
     void Start()
     {
         if (rigid == null)
             rigid = GetComponent<Rigidbody2D>();
-        
+
+        mainCamera = FindObjectOfType<Camera>();
     }
 
     // Update is called once per frame --used for user input
@@ -41,7 +46,13 @@ public class PlayerMovement : MonoBehaviour
         else
             jumpPressed = false;
 
-        
+        if (mainCamera != null)
+        {
+            Vector3 targetPosition = transform.position;
+            targetPosition.z = mainCamera.transform.position.z;
+            targetPosition.y = mainCamera.transform.position.y;
+            mainCamera.transform.position = Vector3.Lerp(mainCamera.transform.position, targetPosition, cameraFollowSpeed * Time.deltaTime);
+        }
     }
 
     private void Flip()
@@ -64,8 +75,7 @@ public class PlayerMovement : MonoBehaviour
         //Debug.Log(collision.gameObject.tag);
         if (collision.gameObject.tag == "Ground")
             isGrounded = true;
-       // else
-         //   Debug.Log(collision.gameObject.tag);
+        // else
+        //   Debug.Log(collision.gameObject.tag);
     }
-
 }
