@@ -159,6 +159,7 @@ MonoBehaviour:
   gameWin: {fileID: 1249115093}
   finishedGame: 0
   lose: 0
+  fails: 0
 --- !u!4 &149568775
 Transform:
   m_ObjectHideFlags: 0
@@ -2005,3 +2006,4 @@ MonoBehaviour:
   spawnRate: 1
   minHeight: -1
   maxHeight: 2
+  pipeGap: 2

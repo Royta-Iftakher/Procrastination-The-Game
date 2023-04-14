@@ -17,7 +17,7 @@ public class GameController : MonoBehaviour
     public bool finishedGame = false;                // Boolean to check if the game is finished
     public bool lose = false;                        // Boolean to check if the player has lost
     public int score { get; private set; }           // The current score of the player (can only be set within the GameController)
-    private int fails = 0;                           // The number of times the player has failed to reach the truck
+    public int fails = 0;                           // The number of times the player has failed to reach the truck
 
     private void Awake()
     {
@@ -57,54 +57,55 @@ public class GameController : MonoBehaviour
     }
 
     public void GameOver()
-{
-    lose = true;                                                // set the lose flag to true
-    playButton.SetActive(true);                                // set the playButton active
-    gameOver.SetActive(true);                                   // set the gameOver UI active
-    ShowScoreText();                                            // show the score text
-    Pause();                                                    // pause the game
-}
-
-public void GameWin()
-{
-    finishedGame = true;                                        // set the finishedGame flag to true
-    playButton.SetActive(true);                                // set the playButton active
-    gameWin.SetActive(true);                                    // set the gameWin UI active
-    Pause();                                                    // pause the game
-}
-
-public void Pause()                                             // method for pausing the game
-{
-    Time.timeScale = 0f;                                        // stop time
-    player.enabled = false;                                     // disable player movement
-}
-
-public void IncreaseScore()                                     // method for increasing the score
-{
-    score++;                                                    // increase the score by 1
-    scoreText.text = score.ToString();                          // update the score text on screen
-    if(score == 10 && lose == false) {                           // if the score is 10 and the lose flag is false
-        Invoke("HideScoreText", .5f);                            // invoke the HideScoreText method after 0.5 seconds
+    {
+        fails += 1;
+        lose = true;                                                // set the lose flag to true
+        playButton.SetActive(true);                                // set the playButton active
+        gameOver.SetActive(true);                                   // set the gameOver UI active
+        ShowScoreText();                                            // show the score text
+        Pause();                                                    // pause the game
     }
-}
 
-void HideScoreText() {                                          // method for hiding the score text
-    scoreText.enabled = false;                                  // disable the score text
-}
+    public void GameWin()
+    {
+        finishedGame = true;                                        // set the finishedGame flag to true
+        playButton.SetActive(true);                                // set the playButton active
+        gameWin.SetActive(true);                                    // set the gameWin UI active
+        Pause();                                                    // pause the game
+    }
 
-void ShowScoreText() {                                          // method for showing the score text
-    scoreText.enabled = true;                                   // enable the score text
-}
+    public void Pause()                                             // method for pausing the game
+    {
+        Time.timeScale = 0f;                                        // stop time
+        player.enabled = false;                                     // disable player movement
+    }
 
-void HideInstructions() {                                       // method for hiding the instructions
-    instructions.enabled = false;                               // disable the instructions
-}
+    public void IncreaseScore()                                     // method for increasing the score
+    {
+        score++;                                                    // increase the score by 1
+        scoreText.text = score.ToString();                          // update the score text on screen
+        if(score == 10 && lose == false) {                           // if the score is 10 and the lose flag is false
+            Invoke("HideScoreText", .5f);                            // invoke the HideScoreText method after 0.5 seconds
+        }
+    }
 
-public void EndGame()                                           // method for ending the game
-{
-    manager.gameFinished = true;                                // set the gameFinished flag in the GameManager
-    SceneManager.UnloadSceneAsync("FlappyTrash");               // unload the current scene
-}
+    void HideScoreText() {                                          // method for hiding the score text
+        scoreText.enabled = false;                                  // disable the score text
+    }
+
+    void ShowScoreText() {                                          // method for showing the score text
+        scoreText.enabled = true;                                   // enable the score text
+    }
+
+    void HideInstructions() {                                       // method for hiding the instructions
+        instructions.enabled = false;                               // disable the instructions
+    }
+
+    public void EndGame()                                           // method for ending the game
+    {
+        manager.gameFinished = true;                                // set the gameFinished flag in the GameManager
+        SceneManager.UnloadSceneAsync("FlappyTrash");               // unload the current scene
+    }
 
 }
 //Find a way to -.5 for bottom pipe and +.5 for top pipe everytime player loses 5 times

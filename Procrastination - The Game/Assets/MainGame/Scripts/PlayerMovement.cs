@@ -13,7 +13,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float jumpForce = 500.0f;
     [SerializeField] bool isGrounded = true;
     [SerializeField] float cameraFollowSpeed = 5.0f;
-    [SerializeField] float cameraHeightOffset = 3.0f;
     private Camera mainCamera;
 
     // Start is called before the first frame update

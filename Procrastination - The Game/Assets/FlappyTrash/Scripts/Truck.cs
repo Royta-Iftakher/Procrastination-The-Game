@@ -5,7 +5,7 @@ using UnityEngine;
 public class Truck : MonoBehaviour
 {
     private GameController manager;
-    public float speed = 2.0f;
+    public float speed = 0f;
 
     void Start()
     {
@@ -15,8 +15,10 @@ public class Truck : MonoBehaviour
     void Update()
     {   
         // Increase the speed of the truck when the player reaches a score of 10
-        if(manager.score == 10 && manager.lose == false) {  
-            speed += .025f;
+        if(manager.score == 10 && manager.lose == false) { 
+            if(speed < 2.5) {
+            speed += .02f;
+            }
         }
         // Stop the truck when the player loses after reaching a score of 10
         else if(manager.score == 10 && manager.lose == true) {
