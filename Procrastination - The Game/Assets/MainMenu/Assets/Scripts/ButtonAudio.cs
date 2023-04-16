@@ -25,7 +25,7 @@ public class ButtonAudio : MonoBehaviour
         defaultButton.Play();
     }
 
-    public void PlayOpenBook()
+    public void PlayOpenBookSound()
     {
         openBook.Play();
     }
