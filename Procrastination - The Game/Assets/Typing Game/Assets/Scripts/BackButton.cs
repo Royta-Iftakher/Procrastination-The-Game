@@ -14,7 +14,8 @@ public class BackButton : MonoBehaviour
     }
 
     public void goBack() {
+        
+        manager.gameFinished = true;
         SceneManager.UnloadSceneAsync("TypingGame");
-        manager.sceneFinisher();
     }
 }
