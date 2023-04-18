@@ -506,6 +506,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 043625cb472b2324ba52bf9d498329b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneName: 
   eventSystemPrefab: {fileID: 1768612666}
   spawned: 0
   gameFinished: 0
@@ -539,7 +540,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1229886256}
   - component: {fileID: 1229886255}
-  - component: {fileID: 1229886260}
   - component: {fileID: 1229886258}
   - component: {fileID: 1229886261}
   m_Layer: 0
@@ -642,19 +642,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 35.81264, y: 53.89}
   m_EdgeRadius: 0
---- !u!114 &1229886260
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1229886254}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e1c02a70d324e442acb051589ffd4f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  promptCanvas: {fileID: 1006838070}
 --- !u!114 &1229886261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -667,6 +654,76 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 587e8f8a040e19a4ebc8fbdfab14805d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  guiText: 
+  promptCanvas: {fileID: 1006838070}
+  sceneToLoad: FlappyTrash
+  style:
+    m_Name: 
+    m_Normal:
+      m_Background: {fileID: 0}
+      m_ScaledBackgrounds: []
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Hover:
+      m_Background: {fileID: 0}
+      m_ScaledBackgrounds: []
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Active:
+      m_Background: {fileID: 0}
+      m_ScaledBackgrounds: []
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Focused:
+      m_Background: {fileID: 0}
+      m_ScaledBackgrounds: []
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnNormal:
+      m_Background: {fileID: 0}
+      m_ScaledBackgrounds: []
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnHover:
+      m_Background: {fileID: 0}
+      m_ScaledBackgrounds: []
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnActive:
+      m_Background: {fileID: 0}
+      m_ScaledBackgrounds: []
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnFocused:
+      m_Background: {fileID: 0}
+      m_ScaledBackgrounds: []
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Margin:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Padding:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Overflow:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Font: {fileID: 0}
+    m_FontSize: 0
+    m_FontStyle: 0
+    m_Alignment: 0
+    m_WordWrap: 0
+    m_RichText: 1
+    m_TextClipping: 0
+    m_ImagePosition: 0
+    m_ContentOffset: {x: 0, y: 0}
+    m_FixedWidth: 0
+    m_FixedHeight: 0
+    m_StretchWidth: 1
+    m_StretchHeight: 0
   highlightColor: {r: 0.8078432, g: 0.8078432, b: 0.8078432, a: 0.8784314}
 --- !u!1 &1429797849
 GameObject:
@@ -874,7 +931,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e29ae46bd927c2c489eb47851cddb8ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 1544166197338378341, guid: d91e69d301b17bd4bbd9e5cc119540f9, type: 3}
+  playerPrefab: {fileID: 8095947265537644599, guid: 82139f5fb84f14f498a9746d48c45adc, type: 3}
   spawnPoint: {fileID: 135879292}
   doorTransform: {fileID: 1598840401}
 --- !u!1 &1446533533

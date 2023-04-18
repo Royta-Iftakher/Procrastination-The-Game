@@ -7,7 +7,8 @@ public class GameManager : MonoBehaviour
 {
     private static GameManager _instance;
     public static GameManager Instance { get { return _instance; } }
-
+    
+    public string sceneName;
     public GameObject eventSystemPrefab;
     public bool spawned = false;
     public bool gameFinished = false;

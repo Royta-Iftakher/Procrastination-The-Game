@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 public class Prompt : MonoBehaviour
 {
     public GameObject promptCanvas;
-    public string sceneName;
     public GameObject player;
     public GameManager manager;
 
@@ -18,7 +17,7 @@ public class Prompt : MonoBehaviour
     public void goToScene() {
         hidePrompt();
         manager.sceneLoader();
-        SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
+        SceneManager.LoadScene(manager.sceneName, LoadSceneMode.Additive);
     }
     public void cancel() {
         hidePrompt();
@@ -28,5 +27,9 @@ public class Prompt : MonoBehaviour
     }
     public void hidePlayer() {
         player.SetActive(false);
+    }
+
+    void Update() {
+        
     }
 }
