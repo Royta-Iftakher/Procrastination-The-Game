@@ -1991,7 +1991,7 @@ MonoBehaviour:
   m_text: Timer
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 075a0fdd4f9728b4cbadca582b313c9f, type: 2}
-  m_sharedMaterial: {fileID: -6700155999842005168, guid: 075a0fdd4f9728b4cbadca582b313c9f, type: 2}
+  m_sharedMaterial: {fileID: -4363459869576458585, guid: 075a0fdd4f9728b4cbadca582b313c9f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
