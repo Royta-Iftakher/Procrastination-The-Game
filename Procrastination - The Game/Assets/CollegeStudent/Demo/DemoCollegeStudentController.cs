@@ -31,11 +31,11 @@ namespace ClearSky
 
         private void Update()
         {
-            Restart();
+            //Restart();
             if (alive)
             {
-                Hurt();
-                Die();
+                //Hurt();
+                //Die();
                 Attack();
                 Jump();
                 KickBoard();
@@ -63,12 +63,12 @@ namespace ClearSky
         }
         void KickBoard()
         {
-            if (Input.GetKeyDown(KeyCode.Alpha4) && isKickboard)
+            if (Input.GetKeyDown(KeyCode.Alpha2) && isKickboard)
             {
                 isKickboard = false;
                 anim.SetBool("isKickBoard", false);
             }
-            else if (Input.GetKeyDown(KeyCode.Alpha4) && !isKickboard )
+            else if (Input.GetKeyDown(KeyCode.Alpha2) && !isKickboard )
             {
                 isKickboard = true;
                 anim.SetBool("isKickBoard", true);
@@ -154,6 +154,7 @@ namespace ClearSky
                 anim.SetTrigger("attack");
             }
         }
+        /*
         void Hurt()
         {
             if (Input.GetKeyDown(KeyCode.Alpha2))
@@ -165,6 +166,8 @@ namespace ClearSky
                     rb.AddForce(new Vector2(5f, 1f), ForceMode2D.Impulse);
             }
         }
+        */
+        /*
         void Die()
         {
             if (Input.GetKeyDown(KeyCode.Alpha3))
@@ -175,6 +178,8 @@ namespace ClearSky
                 alive = false;
             }
         }
+        */
+        /*
         void Restart()
         {
             if (Input.GetKeyDown(KeyCode.Alpha0))
@@ -185,6 +190,7 @@ namespace ClearSky
                 alive = true;
             }
         }
+        */
     }
 
 }
