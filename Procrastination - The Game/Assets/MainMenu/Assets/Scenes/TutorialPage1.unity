@@ -531,6 +531,7 @@ GameObject:
   m_Component:
   - component: {fileID: 576658992}
   - component: {fileID: 576658991}
+  - component: {fileID: 576658993}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GameManager
@@ -550,6 +551,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 043625cb472b2324ba52bf9d498329b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneName: 
   eventSystemPrefab: {fileID: 0}
   spawned: 0
   gameFinished: 0
@@ -568,6 +570,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &576658993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 576658990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 588cf1eab67172547873515e98ee41dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  openBook: {fileID: 8300000, guid: bb853ba6ff6d64876b3e2ca435df1417, type: 3}
+  defaultButton: {fileID: 8300000, guid: 6bf7070d3e81749cfb8a23095cde60f7, type: 3}
 --- !u!1 &908413996
 GameObject:
   m_ObjectHideFlags: 0
@@ -1007,7 +1023,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1304099771
 Transform:
   m_ObjectHideFlags: 0

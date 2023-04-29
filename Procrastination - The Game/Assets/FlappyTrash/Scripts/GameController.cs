@@ -5,8 +5,7 @@ using UnityEngine.SceneManagement;
 public class GameController : MonoBehaviour
 {
     private Player player;                          // Reference to Player script component
-    private Spawner spawner;                        // Reference to Spawner script component
-    private GameManager manager;                    // Reference to GameManager script component
+    private Spawner spawner;                        // Reference to Spawner script component            
 
     public Text scoreText;                          // Reference to the score text component in the UI
     public Text instructions;                       // Reference to the instructions text component in the UI
@@ -25,7 +24,6 @@ public class GameController : MonoBehaviour
         Application.targetFrameRate = 60;                    // Set the target frame rate to 60 fps
         player = FindObjectOfType<Player>();                // Find the Player script component
         spawner = FindObjectOfType<Spawner>();              // Find the Spawner script component
-        manager = FindObjectOfType<GameManager>();          // Find the GameManager script component
         gameOver.SetActive(false);                          // Disable the Game Over game object in the UI
         gameWin.SetActive(false);                           // Disable the Game Win game object in the UI
 
@@ -103,7 +101,7 @@ public class GameController : MonoBehaviour
 
     public void EndGame()                                           // method for ending the game
     {
-        manager.gameFinished = true;                                // set the gameFinished flag in the GameManager
+        GameManager.Instance.gameFinished = true;                                // set the gameFinished flag in the GameManager
         SceneManager.UnloadSceneAsync("FlappyTrash");               // unload the current scene
     }
 
