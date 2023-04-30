@@ -7,7 +7,6 @@ using System.Linq;
 
 public class QuizManager : MonoBehaviour
 {
-    private GameManager manager;
     public List<QandA> QuesAnswer;
     public GameObject[] options;
     public int currentQuestion;
@@ -19,7 +18,6 @@ public class QuizManager : MonoBehaviour
     public static int score = 0;
 
     private void Start(){
-        manager = FindObjectOfType<GameManager>();
         QuesAnswer = QuesAnswer.OrderBy(x => Random.value).ToList(); 
         totalquestions = Mathf.Min(QuesAnswer.Count, 10);
         GameoverPanel.SetActive(false);
@@ -63,8 +61,8 @@ public class QuizManager : MonoBehaviour
     }
 
     public void retry(){
-        SceneManager.UnloadSceneAsync(manager.sceneName);
-        SceneManager.LoadScene(manager.sceneName, LoadSceneMode.Additive);
+        SceneManager.UnloadSceneAsync(GameManager.Instance.sceneName);
+        SceneManager.LoadScene(GameManager.Instance.sceneName, LoadSceneMode.Additive);
     }
 
     public void gameOver(){

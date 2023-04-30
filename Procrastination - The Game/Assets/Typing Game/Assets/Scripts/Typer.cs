@@ -8,7 +8,6 @@ public class Typer : MonoBehaviour
 {
     public WordBank wordBank = null;
     public TextMeshProUGUI wordOutput = null;
-    private GameManager manager;
     public bool gameWon = false;
 
     [SerializeField] private string remainingWord = string.Empty;
@@ -17,7 +16,6 @@ public class Typer : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        manager = FindObjectOfType<GameManager>();
         SetCurrentWord();
     }
 
@@ -43,7 +41,7 @@ public class Typer : MonoBehaviour
         }
         else {
             SceneManager.UnloadSceneAsync("TypingGame");
-            manager.sceneFinisher();
+            GameManager.Instance.sceneFinisher();
         }
         
     }

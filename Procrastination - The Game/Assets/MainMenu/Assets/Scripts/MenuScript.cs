@@ -30,7 +30,3 @@ public class MenuScript : MonoBehaviour
     }
 }
 
-//i hope this way will make it easier for the music to stop cutting off
-//if u are confused ask questions
-//also scene additive would help with the ui stuff later for example, if when we create the pause menu
-
