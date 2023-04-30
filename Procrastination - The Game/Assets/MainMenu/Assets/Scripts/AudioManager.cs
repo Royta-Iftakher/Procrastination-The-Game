@@ -44,6 +44,19 @@ public class AudioManager : MonoBehaviour
             }
         }
     }
+    public void EnableAudioSource(string clipName)
+    {
+        // Find the AudioSource with the given clip name
+        foreach (AudioSource source in audioSources)
+        {
+            if (source.clip.name == clipName)
+            {
+                // Disable the AudioSource if it exists
+                source.enabled = true;
+                break;
+            }
+        }
+    }
 
 
     public void PlaySound(AudioClip clip)

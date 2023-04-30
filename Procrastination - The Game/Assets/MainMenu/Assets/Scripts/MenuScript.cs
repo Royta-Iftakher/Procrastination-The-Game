@@ -9,6 +9,9 @@ public class MenuScript : MonoBehaviour
     public void PlayGame()
     {
         AudioManager.instance.DisableAudioSource("mainTheme");
+        GameTimer.Instance.gameObject.SetActive(true);
+        GameTimer.Instance.ResetTimer();
+        GameManager.Instance.gameStarted = true;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 

@@ -2,79 +2,156 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D))]
-public class PlayerMovement : MonoBehaviour
-{
-    [SerializeField] float movement;
-    [SerializeField] Rigidbody2D rigid;
-    [SerializeField] const int SPEED = 15;
-    [SerializeField] bool isFacingRight = true;
-    [SerializeField] bool jumpPressed = false;
-    [SerializeField] float jumpForce = 500.0f;
-    [SerializeField] bool isGrounded = true;
-    [SerializeField] float cameraFollowSpeed = 5.0f;
-    private Camera mainCamera;
-
-    // Start is called before the first frame update
-    void Start()
+    public class PlayerMovement : MonoBehaviour
     {
-        if (rigid == null)
-            rigid = GetComponent<Rigidbody2D>();
+        public float movePower = 10f;
+        public float KickBoardMovePower = 15f;
+        public float jumpPower = 20f; //Set Gravity Scale in Rigidbody2D Component to 5
+        public float cameraFollowSpeed = 5f;
 
-        mainCamera = FindObjectOfType<Camera>();
-    }
+        private Rigidbody2D rb;
+        private Animator anim;
+        Vector3 movement;
+        private int direction = 1;
+        bool isJumping = false;
+        private bool alive = true;
+        private bool isKickboard = false;
+        private Camera mainCamera;
+        public PauseMenu PauseMenu;
 
-    // Update is called once per frame --used for user input
-    //do NOT use for physics & movement
-    void Update()
-    {
-        movement = Input.GetAxis("Horizontal");
-        if (Input.GetButtonDown("Jump"))
-            jumpPressed = true;
-    }
 
-    //called potentially many times per frame
-    //use for physics & movement
-    private void FixedUpdate()
-    {
-        rigid.velocity = new Vector2(SPEED * movement, rigid.velocity.y);
-        if (movement < 0 && isFacingRight || movement > 0 && !isFacingRight)
-            Flip();
-        if (jumpPressed && isGrounded)
-            Jump();
-        else
-            jumpPressed = false;
 
-        if (mainCamera != null)
+        // Start is called before the first frame update
+        void Start()
         {
-            Vector3 targetPosition = transform.position;
-            targetPosition.z = mainCamera.transform.position.z;
-            targetPosition.y = mainCamera.transform.position.y;
-            mainCamera.transform.position = Vector3.Lerp(mainCamera.transform.position, targetPosition, cameraFollowSpeed * Time.deltaTime);
+            rb = GetComponent<Rigidbody2D>();
+            anim = GetComponent<Animator>();
+            PauseMenu = FindObjectOfType<PauseMenu>();
+            mainCamera = Camera.main;
         }
-    }
 
-    private void Flip()
-    {
-        transform.Rotate(0, 180, 0);
-        isFacingRight = !isFacingRight;
-    }
+        private void Update()
+        {
+            //Restart();
+            if (alive && PauseMenu.GameIsPaused == false)
+            {
+                Attack();
+                Jump();
+                KickBoard();
+                Run();
 
-    private void Jump()
-    {
-        rigid.velocity = new Vector2(rigid.velocity.x, 0);
-        rigid.AddForce(new Vector2(0, jumpForce));
-        //Debug.Log("jumped");
-        jumpPressed = false;
-        isGrounded = false;
-    }
+            }
+        }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        //Debug.Log(collision.gameObject.tag);
-        if (collision.gameObject.tag == "Ground")
-            isGrounded = true;
-        // else
-        //   Debug.Log(collision.gameObject.tag);
+         private void FixedUpdate()
+        {
+            if (mainCamera != null)
+            {
+                Vector3 targetPosition = transform.position;
+                targetPosition.z = mainCamera.transform.position.z;
+                targetPosition.y = mainCamera.transform.position.y;
+                mainCamera.transform.position = Vector3.Lerp(mainCamera.transform.position, targetPosition, cameraFollowSpeed * Time.deltaTime);
+            }
+        }
+
+        private void OnTriggerEnter2D(Collider2D other)
+        {   
+            if(other.gameObject.CompareTag("Ground")) {
+            anim.SetBool("isJump", false);
+            }
+        }
+        void KickBoard()
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha2) && isKickboard)
+            {
+                isKickboard = false;
+                anim.SetBool("isKickBoard", false);
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha2) && !isKickboard )
+            {
+                isKickboard = true;
+                anim.SetBool("isKickBoard", true);
+            }
+
+        }
+
+        void Run()
+        {
+            if (!isKickboard)
+            {
+                Vector3 moveVelocity = Vector3.zero;
+                anim.SetBool("isRun", false);
+
+
+                if (Input.GetAxisRaw("Horizontal") < 0)
+                {
+                    direction = -1;
+                    moveVelocity = Vector3.left;
+
+                    transform.localScale = new Vector3(direction, 1, 1);
+                    if (!anim.GetBool("isJump"))
+                        anim.SetBool("isRun", true);
+
+                }
+                if (Input.GetAxisRaw("Horizontal") > 0)
+                {
+                    direction = 1;
+                    moveVelocity = Vector3.right;
+
+                    transform.localScale = new Vector3(direction, 1, 1);
+                    if (!anim.GetBool("isJump"))
+                        anim.SetBool("isRun", true);
+
+                }
+                transform.position += moveVelocity * movePower * Time.deltaTime;
+
+            }
+            if (isKickboard)
+            {
+                Vector3 moveVelocity = Vector3.zero;
+                if (Input.GetAxisRaw("Horizontal") < 0)
+                {
+                    direction = -1;
+                    moveVelocity = Vector3.left;
+
+                    transform.localScale = new Vector3(direction, 1, 1);
+                }
+                if (Input.GetAxisRaw("Horizontal") > 0)
+                {
+                    direction = 1;
+                    moveVelocity = Vector3.right;
+
+                    transform.localScale = new Vector3(direction, 1, 1);
+                }
+                transform.position += moveVelocity * KickBoardMovePower * Time.deltaTime;
+            }
+        }
+        void Jump()
+        {
+            if ((Input.GetButtonDown("Jump") || Input.GetAxisRaw("Vertical") > 0)
+            && !anim.GetBool("isJump"))
+            {
+                isJumping = true;
+                anim.SetBool("isJump", true);
+            }
+            if (!isJumping)
+            {
+                return;
+            }
+
+            rb.velocity = Vector2.zero;
+
+            Vector2 jumpVelocity = new Vector2(0, jumpPower);
+            rb.AddForce(jumpVelocity, ForceMode2D.Impulse);
+
+            isJumping = false;
+        }
+        void Attack()
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                anim.SetTrigger("attack");
+            }
+        }
+
     }
-}

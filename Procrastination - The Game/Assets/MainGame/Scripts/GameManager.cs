@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public bool spawned = false;
     public bool gameFinished = false;
     private GameObject[] allObjects;
+    public bool gameStarted = false;
 
     void Awake()
     {
