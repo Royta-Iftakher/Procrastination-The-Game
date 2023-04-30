@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour
     {
         allObjects = GameObject.FindObjectsOfType<GameObject>();
         foreach (GameObject obj in allObjects) {
-            if (obj.name != "GameManager") { 
+            if (obj.tag != "GameManager") { 
                 obj.SetActive(false);
             }
         }

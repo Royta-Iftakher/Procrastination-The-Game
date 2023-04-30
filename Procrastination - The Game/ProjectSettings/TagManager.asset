@@ -11,7 +11,8 @@ TagManager:
   - Door
   - GameManager
   - Music
-  - AudioManager
+  - Timer
+  - Manager
   layers:
   - Default
   - TransparentFX
