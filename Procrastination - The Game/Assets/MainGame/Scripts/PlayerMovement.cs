@@ -18,6 +18,10 @@ using UnityEngine;
         private bool isKickboard = false;
         private Camera mainCamera;
         public PauseMenu PauseMenu;
+        
+        public NameTag nameTag;
+        public Vector3 normalNameTagOffset;
+        public Vector3 kickboardNameTagOffset;
 
 
 
@@ -66,11 +70,13 @@ using UnityEngine;
             {
                 isKickboard = false;
                 anim.SetBool("isKickBoard", false);
+                nameTag.AdjustOffset(normalNameTagOffset);
             }
             else if (Input.GetKeyDown(KeyCode.Alpha2) && !isKickboard )
             {
                 isKickboard = true;
                 anim.SetBool("isKickBoard", true);
+                nameTag.AdjustOffset(kickboardNameTagOffset);
             }
 
         }

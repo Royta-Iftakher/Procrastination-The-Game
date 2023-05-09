@@ -53,8 +53,10 @@ public class GameTimer : MonoBehaviour
 
     void UpdateTimeText()
     {
-        string timeString = string.Format("{0:00}:{1:00} {2}", 
-            hours == 0 ? 12 : hours, minutes, hours < 12 ? "AM" : "PM");
+        int totalHours = 10 + (int)(timeElapsed / 3600.0f);
+        string amPm = totalHours >= 12 && totalHours < 24 ? "PM" : "AM";
+        string timeString = string.Format("{0:00}:{1:00} {2}",
+            hours == 0 ? 12 : hours, minutes, amPm);
         timeText.text = timeString;
 
         // Reset the time elapsed if a day has passed

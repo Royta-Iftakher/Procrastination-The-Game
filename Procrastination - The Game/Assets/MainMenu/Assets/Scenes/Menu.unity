@@ -281,7 +281,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTimeleft: 0
-  playerName: 
+  playerName: Hello
 --- !u!4 &280412442
 Transform:
   m_ObjectHideFlags: 0
