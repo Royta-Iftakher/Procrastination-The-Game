@@ -10,10 +10,9 @@ public class SpawnPlayer : MonoBehaviour
 
     private void Start()
     {
-        GameManager manager = FindObjectOfType<GameManager>();
-        if (spawnPoint != null && manager != null &&manager.spawned == false)
+        if (spawnPoint != null &&GameManager.Instance.spawned == false)
         {
-            manager.spawned = true;
+            GameManager.Instance.spawned = true;
             Instantiate(playerPrefab, spawnPoint.transform.position, Quaternion.identity);
             Destroy(spawnPoint);
         }

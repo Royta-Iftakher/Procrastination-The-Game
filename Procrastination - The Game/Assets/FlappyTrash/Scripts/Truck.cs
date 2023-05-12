@@ -31,7 +31,7 @@ public class Truck : MonoBehaviour
         transform.Translate(Vector2.left * speed * Time.deltaTime);
         
         // Destroy the buildings after they disappear from the screen
-        if (transform.position.x < -15)
+        if (transform.position.x < 40)
         {
             Destroy(gameObject);
         }

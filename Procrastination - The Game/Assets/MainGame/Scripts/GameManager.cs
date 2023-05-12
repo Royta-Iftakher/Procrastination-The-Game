@@ -9,11 +9,13 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get { return _instance; } }
     
     public string sceneName;
-    public GameObject eventSystemPrefab;
+    [SerializeField] private GameObject eventSystemPrefab;
     public bool spawned = false;
     public bool gameFinished = false;
     private GameObject[] allObjects;
     public bool gameStarted = false;
+    public bool win;
+    private PlayerMovement player;
 
     void Awake()
     {
@@ -24,6 +26,7 @@ public class GameManager : MonoBehaviour
         }
         _instance = this;
         DontDestroyOnLoad(this.gameObject);
+        Application.targetFrameRate = 60; 
     }
 
     void Start()
@@ -32,6 +35,8 @@ public class GameManager : MonoBehaviour
         {
             Instantiate(eventSystemPrefab);
         }
+        win = false;
+        player = FindObjectOfType<PlayerMovement>();
     }
 
     void OnEnable()
@@ -58,18 +63,28 @@ public class GameManager : MonoBehaviour
     public void sceneLoader() 
     {
         allObjects = GameObject.FindObjectsOfType<GameObject>();
-        foreach (GameObject obj in allObjects) {
-            if (obj.tag != "GameManager") { 
-                obj.SetActive(false);
-            }
+        player.DisablePlayerControls();
+        foreach (GameObject obj in allObjects)
+        {
+            if (obj.CompareTag("GameManager") || obj.CompareTag("Player"))
+            {
+                continue; // Skip deactivating GameManager and Player objects
+            }   
+            obj.SetActive(false);
         }
     }
 
     public void sceneFinisher()
     {
-        foreach(GameObject obj in allObjects) {
+        foreach (GameObject obj in allObjects)
+        {
+            if (obj.CompareTag("GameManager") || obj.CompareTag("Player"))
+            {
+                continue; // Skip deactivating GameManager and Player objects
+            }   
             obj.SetActive(true);
         }
+        player.EnablePlayerControls();
     }
 
     void Update()
@@ -77,6 +92,12 @@ public class GameManager : MonoBehaviour
         if(gameFinished == true) {
             gameFinished = false;
             sceneFinisher();
+        }
+        if(win == true) {
+            SceneManager.LoadScene("End");
+        }
+        if(player == null) {
+            player = FindObjectOfType<PlayerMovement>();
         }
     }
     

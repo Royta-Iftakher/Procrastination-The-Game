@@ -15,7 +15,7 @@ using UnityEngine;
         private int direction = 1;
         bool isJumping = false;
         private bool alive = true;
-        private bool isKickboard = false;
+        public bool isKickboard = false;
         private Camera mainCamera;
         public PauseMenu PauseMenu;
         
@@ -32,6 +32,7 @@ using UnityEngine;
             anim = GetComponent<Animator>();
             PauseMenu = FindObjectOfType<PauseMenu>();
             mainCamera = Camera.main;
+
         }
 
         private void Update()
@@ -43,11 +44,11 @@ using UnityEngine;
                 Jump();
                 KickBoard();
                 Run();
-
             }
+
         }
 
-         private void FixedUpdate()
+        private void FixedUpdate()
         {
             if (mainCamera != null)
             {
@@ -58,13 +59,14 @@ using UnityEngine;
             }
         }
 
+
         private void OnTriggerEnter2D(Collider2D other)
         {   
             if(other.gameObject.CompareTag("Ground")) {
             anim.SetBool("isJump", false);
             }
         }
-        void KickBoard()
+        public void KickBoard()
         {
             if (Input.GetKeyDown(KeyCode.Alpha2) && isKickboard)
             {
@@ -77,6 +79,11 @@ using UnityEngine;
                 isKickboard = true;
                 anim.SetBool("isKickBoard", true);
                 nameTag.AdjustOffset(kickboardNameTagOffset);
+            }
+            else if (!isKickboard) {
+                isKickboard = false;
+                anim.SetBool("isKickBoard", false);
+                nameTag.AdjustOffset(normalNameTagOffset);
             }
 
         }
@@ -158,6 +165,18 @@ using UnityEngine;
             {
                 anim.SetTrigger("attack");
             }
+        }
+
+        public void DisablePlayerControls()
+        {
+            rb.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation; // Freeze the y-axis
+            this.enabled = false; // Disable the PlayerMovement script
+        }
+
+        public void EnablePlayerControls()
+        {
+            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+            this.enabled = true; // Enable the PlayerMovement script
         }
 
     }

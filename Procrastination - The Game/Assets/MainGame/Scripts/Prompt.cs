@@ -6,18 +6,16 @@ using UnityEngine.SceneManagement;
 public class Prompt : MonoBehaviour
 {
     public GameObject promptCanvas;
-    public GameObject player;
-    public GameManager manager;
 
     void Start()
     {
-        manager = FindObjectOfType<GameManager>();
+        
         hidePrompt();
     }
     public void goToScene() {
         hidePrompt();
-        manager.sceneLoader();
-        SceneManager.LoadScene(manager.sceneName, LoadSceneMode.Additive);
+        GameManager.Instance.sceneLoader();
+        SceneManager.LoadScene(GameManager.Instance.sceneName, LoadSceneMode.Additive);
     }
     public void cancel() {
         hidePrompt();
@@ -25,9 +23,7 @@ public class Prompt : MonoBehaviour
     public void hidePrompt() {
         promptCanvas.SetActive(false);
     }
-    public void hidePlayer() {
-        player.SetActive(false);
-    }
+
 
     void Update() {
         

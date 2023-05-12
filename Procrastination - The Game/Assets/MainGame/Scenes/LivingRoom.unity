@@ -1464,7 +1464,7 @@ GameObject:
   - component: {fileID: 389173763}
   m_Layer: 0
   m_Name: PauseMenu
-  m_TagString: Untagged
+  m_TagString: GameManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1483,6 +1483,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 693512953}
   player: {fileID: 1325366737279222949, guid: 82139f5fb84f14f498a9746d48c45adc, type: 3}
+  trashDone: 0
+  readDone: 0
+  emailsDone: 0
+  trashToggle: {fileID: 580050425}
+  readToggle: {fileID: 1865379246}
+  emailsToggle: {fileID: 1651462172}
 --- !u!4 &389173764
 Transform:
   m_ObjectHideFlags: 0
@@ -1494,9 +1500,10 @@ Transform:
   m_LocalPosition: {x: 1172.9373, y: 596.9079, z: 53.144394}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 693512957}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &408299799
 GameObject:
@@ -1710,7 +1717,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 432216814}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 26, y: 0.5, z: -10}
+  m_LocalPosition: {x: 53, y: 0.5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1728,7 +1735,7 @@ GameObject:
   - component: {fileID: 580050424}
   - component: {fileID: 580050425}
   m_Layer: 5
-  m_Name: Toggle List Element 1
+  m_Name: Toggle List Element 1 Trash
   m_TagString: List Element
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1795,14 +1802,26 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1689234105}
   toggleTransition: 1
   graphic: {fileID: 1326231723}
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 389173763}
+        m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
+        m_MethodName: trashTask
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &615003273
 GameObject:
@@ -2051,8 +2070,8 @@ RectTransform:
   - {fileID: 1479157685}
   - {fileID: 133120916}
   - {fileID: 101827791}
-  m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_Father: {fileID: 389173764}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2173,6 +2192,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ceee45855fc888a4aa5731e8a054da8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeLeft: 
   timeText: {fileID: 1096366397}
 --- !u!1 &773543867
 GameObject:
@@ -2594,7 +2614,7 @@ Transform:
   - {fileID: 1801479690}
   - {fileID: 174303133}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &937273362
 GameObject:
@@ -3678,6 +3698,7 @@ MonoBehaviour:
   spawned: 0
   gameFinished: 0
   gameStarted: 0
+  win: 0
 --- !u!1 &1404118303
 GameObject:
   m_ObjectHideFlags: 0
@@ -3966,7 +3987,7 @@ GameObject:
   - component: {fileID: 1651462171}
   - component: {fileID: 1651462172}
   m_Layer: 5
-  m_Name: Toggle List Element 3
+  m_Name: Toggle List Element 3 Emails
   m_TagString: List Element
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4033,14 +4054,26 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1345158342}
   toggleTransition: 1
   graphic: {fileID: 207546909}
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 389173763}
+        m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
+        m_MethodName: emailsTask
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &1657997209
 GameObject:
@@ -4809,7 +4842,7 @@ GameObject:
   - component: {fileID: 1865379245}
   - component: {fileID: 1865379246}
   m_Layer: 5
-  m_Name: Toggle List Element 2
+  m_Name: Toggle List Element 2 Read
   m_TagString: List Element
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4876,14 +4909,26 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 2002263263}
   toggleTransition: 1
   graphic: {fileID: 1277723330}
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 389173763}
+        m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
+        m_MethodName: readTask
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &1967268998
 GameObject:

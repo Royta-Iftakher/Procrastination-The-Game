@@ -13,6 +13,9 @@ TagManager:
   - Music
   - Timer
   - Manager
+  - List Element
+  - PauseMenu
+  - AudioManager
   layers:
   - Default
   - TransparentFX

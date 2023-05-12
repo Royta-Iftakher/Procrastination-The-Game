@@ -13,6 +13,7 @@ public class GameController : MonoBehaviour
     public GameObject gameOver;                     // Reference to the Game Over game object in the UI
     public GameObject gameWin;                      // Reference to the Game Win game object in the UI
 
+    private bool gameStart;
     public bool finishedGame = false;                // Boolean to check if the game is finished
     public bool lose = false;                        // Boolean to check if the player has lost
     public int score { get; private set; }           // The current score of the player (can only be set within the GameController)
@@ -25,8 +26,8 @@ public class GameController : MonoBehaviour
         player = FindObjectOfType<Player>();                // Find the Player script component
         spawner = FindObjectOfType<Spawner>();              // Find the Spawner script component
         gameOver.SetActive(false);                          // Disable the Game Over game object in the UI
-        gameWin.SetActive(false);                           // Disable the Game Win game object in the UI
-
+        gameWin.SetActive(false);                          // Disable the Game Win game object in the UI
+        gameStart = false;
         Pause();                                            // Pause the game at the start
     }
 
@@ -36,6 +37,7 @@ public class GameController : MonoBehaviour
             EndGame();                                      // Call the EndGame method and go back to the main game
             finishedGame = false;                           // Set finishedGame to false
         }
+        gameStart = true;
         Invoke("HideInstructions", 2f);                     // Hide instructions few seconds after hitting play
         lose = false;                                       // Reset lose to false
         score = 0;                                          // Reset the score to zero
@@ -101,8 +103,16 @@ public class GameController : MonoBehaviour
 
     public void EndGame()                                           // method for ending the game
     {
-        GameManager.Instance.gameFinished = true;                                // set the gameFinished flag in the GameManager
+        GameManager.Instance.gameFinished = true;                            // set the gameFinished flag in the GameManager
+        PauseMenu.Instance.trashTask(true);
         SceneManager.UnloadSceneAsync("FlappyTrash");               // unload the current scene
+    }
+
+    void Update()
+    {
+        if(!gameStart) {
+            Time.timeScale = 0f;
+        }
     }
 
 }

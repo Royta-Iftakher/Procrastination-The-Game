@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class MinigameLoader : MonoBehaviour
 {
-    private GameManager manager;
     public string guiText;
     public GameObject promptCanvas;
     public string sceneToLoad;
@@ -15,12 +14,14 @@ public class MinigameLoader : MonoBehaviour
 
     public Color highlightColor = Color.yellow;
     private Color originalColor;
+
+    private PlayerMovement player;
    
     
 
     private void Start()
     {
-        manager = FindObjectOfType<GameManager>();
+        player = FindObjectOfType<PlayerMovement>();
         originalColor = GetComponent<Renderer>().material.color;
     }
 
@@ -55,10 +56,15 @@ public class MinigameLoader : MonoBehaviour
 
     void Update() 
     {
+        if(player == null) {
+            player = FindObjectOfType<PlayerMovement>();
+        }
         if (showGui && Input.GetKeyDown(KeyCode.E)) 
         {   
             //GameManager.Instance.spawnPoint = newSpawnPoint.position;
-            manager.sceneName = sceneToLoad;
+            player.isKickboard = false;
+            player.KickBoard();
+            GameManager.Instance.sceneName = sceneToLoad;
             promptCanvas.SetActive(true);
         }
     }

@@ -7,7 +7,8 @@ public class GameTimer : MonoBehaviour
 {
     public static GameTimer Instance { get; private set; }
 
-    public TextMeshProUGUI timeText;
+    public string timeLeft;
+    [SerializeField] private TextMeshProUGUI timeText;
     private int hours = 10;
     private int minutes = 0;
     private int timeScale = 60; // 1 real second = 1 in-game minute
@@ -48,6 +49,11 @@ public class GameTimer : MonoBehaviour
 
             // Update the time text
             UpdateTimeText();
+
+            float timeLeftInSeconds = dayDurationInSeconds - timeElapsed;
+            int hoursLeft = (int)(timeLeftInSeconds / 3600.0f);
+            int minutesLeft = (int)((timeLeftInSeconds % 3600.0f) / 60.0f);
+            timeLeft = string.Format("{0:00}:{1:00}", hoursLeft, minutesLeft);
         }
     }
 
