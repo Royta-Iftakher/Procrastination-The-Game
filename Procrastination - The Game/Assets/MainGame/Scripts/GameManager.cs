@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     public bool gameStarted = false;
     public bool win;
     private PlayerMovement player;
+    private Energy energy;
 
     void Awake()
     {
@@ -37,6 +38,7 @@ public class GameManager : MonoBehaviour
         }
         win = false;
         player = FindObjectOfType<PlayerMovement>();
+        energy = FindObjectOfType<Energy>();
     }
 
     void OnEnable()
@@ -64,6 +66,7 @@ public class GameManager : MonoBehaviour
     {
         allObjects = GameObject.FindObjectsOfType<GameObject>();
         player.DisablePlayerControls();
+        GameTimer.Instance.DisableChildren();
         foreach (GameObject obj in allObjects)
         {
             if (obj.CompareTag("GameManager") || obj.CompareTag("Player"))
@@ -85,6 +88,7 @@ public class GameManager : MonoBehaviour
             obj.SetActive(true);
         }
         player.EnablePlayerControls();
+        GameTimer.Instance.EnableChildren();
     }
 
     void Update()

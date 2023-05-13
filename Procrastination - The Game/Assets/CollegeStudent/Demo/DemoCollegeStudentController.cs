@@ -1,13 +1,14 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-    public class PlayerMovement : MonoBehaviour
+namespace ClearSky
+{
+    public class DemoCollegeStudentController : MonoBehaviour
     {
         public float movePower = 10f;
         public float KickBoardMovePower = 15f;
         public float jumpPower = 20f; //Set Gravity Scale in Rigidbody2D Component to 5
-        public float cameraFollowSpeed = 5f;
 
         private Rigidbody2D rb;
         private Animator anim;
@@ -15,14 +16,7 @@ using UnityEngine;
         private int direction = 1;
         bool isJumping = false;
         private bool alive = true;
-        public bool isKickboard = false;
-        private Camera mainCamera;
-        public PauseMenu PauseMenu;
-        
-        public NameTag nameTag;
-        public Vector3 normalNameTagOffset;
-        public Vector3 kickboardNameTagOffset;
-
+        private bool isKickboard = false;
 
 
         // Start is called before the first frame update
@@ -30,59 +24,37 @@ using UnityEngine;
         {
             rb = GetComponent<Rigidbody2D>();
             anim = GetComponent<Animator>();
-            PauseMenu = FindObjectOfType<PauseMenu>();
-            mainCamera = Camera.main;
-
         }
 
         private void Update()
         {
-            if (alive && PauseMenu.GameIsPaused == false)
+            Restart();
+            if (alive)
             {
+                Hurt();
+                Die();
                 Attack();
                 Jump();
                 KickBoard();
                 Run();
-            }
 
-        }
-
-        private void FixedUpdate()
-        {
-            if (mainCamera != null)
-            {
-                Vector3 targetPosition = transform.position;
-                targetPosition.z = mainCamera.transform.position.z;
-                targetPosition.y = mainCamera.transform.position.y;
-                mainCamera.transform.position = Vector3.Lerp(mainCamera.transform.position, targetPosition, cameraFollowSpeed * Time.deltaTime);
             }
         }
-
-
         private void OnTriggerEnter2D(Collider2D other)
-        {   
-            if(other.gameObject.CompareTag("Ground")) {
-            anim.SetBool("isJump", false);
-            }
-        }
-        public void KickBoard()
         {
-            if (Input.GetKeyDown(KeyCode.Alpha2) && isKickboard)
+            anim.SetBool("isJump", false);
+        }
+        void KickBoard()
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha4) && isKickboard)
             {
                 isKickboard = false;
                 anim.SetBool("isKickBoard", false);
-                nameTag.AdjustOffset(normalNameTagOffset);
             }
-            else if (Input.GetKeyDown(KeyCode.Alpha2) && !isKickboard )
+            else if (Input.GetKeyDown(KeyCode.Alpha4) && !isKickboard )
             {
                 isKickboard = true;
                 anim.SetBool("isKickBoard", true);
-                nameTag.AdjustOffset(kickboardNameTagOffset);
-            }
-            else if (!isKickboard) {
-                isKickboard = false;
-                anim.SetBool("isKickBoard", false);
-                nameTag.AdjustOffset(normalNameTagOffset);
             }
 
         }
@@ -165,41 +137,37 @@ using UnityEngine;
                 anim.SetTrigger("attack");
             }
         }
-
-        public void Die()
+        void Hurt()
         {
-            isKickboard = false;
-            anim.SetBool("isKickBoard", false);
-            anim.SetTrigger("die");
-            alive = false;
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                anim.SetTrigger("hurt");
+                if (direction == 1)
+                    rb.AddForce(new Vector2(-5f, 1f), ForceMode2D.Impulse);
+                else
+                    rb.AddForce(new Vector2(5f, 1f), ForceMode2D.Impulse);
+            }
         }
-        public void Restart()
+        void Die()
         {
+            if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                isKickboard = false;
+                anim.SetBool("isKickBoard", false);
+                anim.SetTrigger("die");
+                alive = false;
+            }
+        }
+        void Restart()
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha0))
+            {
                 isKickboard = false;
                 anim.SetBool("isKickBoard", false);
                 anim.SetTrigger("idle");
                 alive = true;
+            }
         }
-        public void Hurt()
-        {
-            anim.SetTrigger("hurt");
-            if (direction == 1)
-                rb.AddForce(new Vector2(-5f, 1f), ForceMode2D.Impulse);
-            else
-                rb.AddForce(new Vector2(5f, 1f), ForceMode2D.Impulse);
-        }
-
-
-        public void DisablePlayerControls()
-        {
-            rb.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation; // Freeze the y-axis
-            this.enabled = false; // Disable the PlayerMovement script
-        }
-
-        public void EnablePlayerControls()
-        {
-            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-            this.enabled = true; // Enable the PlayerMovement script
-        }
-
     }
+
+}

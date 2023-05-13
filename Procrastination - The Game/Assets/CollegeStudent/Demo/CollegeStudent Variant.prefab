@@ -454,6 +454,7 @@ MonoBehaviour:
   KickBoardMovePower: 15
   jumpPower: 20
   cameraFollowSpeed: 5
+  isKickboard: 0
   PauseMenu: {fileID: 0}
   nameTag: {fileID: 4294844905476027950}
   normalNameTagOffset: {x: 0, y: 0, z: 0}

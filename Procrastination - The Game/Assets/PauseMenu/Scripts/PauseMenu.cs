@@ -12,6 +12,7 @@ public class PauseMenu : MonoBehaviour
 
     [SerializeField] private GameObject pauseMenuUI;
     [SerializeField] private PlayerMovement player;
+    [SerializeField] private Energy energy;
     // Update is called once per frame
     public bool trashDone;
     public bool readDone;
@@ -37,6 +38,7 @@ public class PauseMenu : MonoBehaviour
     void Start() {
         pauseMenuUI.SetActive(false);
         player = FindObjectOfType<PlayerMovement>();
+        energy = FindObjectOfType<Energy>();
         trashDone = false;
         readDone = false;
         emailsDone = false;
@@ -63,10 +65,23 @@ public class PauseMenu : MonoBehaviour
             GameManager.Instance.win = true;
             Resume();
         }
+    }
+    void FixedUpdate() 
+    {
+        if (!trashDone) 
+        {
+            trashToggle.isOn = trashDone;
+        }
 
-        trashToggle.isOn = trashDone;
-        readToggle.isOn = readDone;
-        emailsToggle.isOn = emailsDone;
+        if (!readDone)
+        {
+            readToggle.isOn = readDone;
+        }
+
+        if (!emailsDone)
+        {
+            emailsToggle.isOn = emailsDone;
+        }
     }
 
     public void Resume()
@@ -100,7 +115,7 @@ public class PauseMenu : MonoBehaviour
     {
         trashDone = isComplete;
         Debug.Log("Trash completed");
-        
+        energy.LoseEnergy(2);
     }
 
     public void readTask(bool isComplete)

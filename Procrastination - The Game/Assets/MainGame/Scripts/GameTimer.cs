@@ -26,11 +26,11 @@ public class GameTimer : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(this.gameObject);
         }
+        DisableChildren(transform);
     }
 
     void Start()
     {
-        gameObject.SetActive(false);
         // Set the initial time in the text
         UpdateTimeText();
     }
@@ -78,4 +78,36 @@ public class GameTimer : MonoBehaviour
         minutes = 0;
         timeElapsed = 0.0f;
     }
+
+    public void DisableChildren(Transform parent)
+    {
+        foreach (Transform child in parent)
+        {
+            child.gameObject.SetActive(false);
+            if(child.childCount > 0)
+            {
+                DisableChildren(child);
+            }
+        }
+    }
+
+    public void EnableChildren(Transform parent)
+    {
+        foreach (Transform child in parent)
+        {
+            child.gameObject.SetActive(true);
+            if(child.childCount > 0)
+            {
+                EnableChildren(child);
+            }
+        }
+    }
+
+    public void EnableChildren() {
+        EnableChildren(transform);
+    }
+    public void DisableChildren() {
+        DisableChildren(transform);
+    }
+
 }
