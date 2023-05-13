@@ -14,6 +14,7 @@ public class Prompt : MonoBehaviour
     }
     public void goToScene() {
         hidePrompt();
+        GameManager.Instance.inTask = true;
         GameManager.Instance.sceneLoader();
         SceneManager.LoadScene(GameManager.Instance.sceneName, LoadSceneMode.Additive);
     }

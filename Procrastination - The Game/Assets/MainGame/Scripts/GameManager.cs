@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     private GameObject[] allObjects;
     public bool gameStarted = false;
     public bool win;
+    public bool inTask;
     private PlayerMovement player;
     private Energy energy;
 

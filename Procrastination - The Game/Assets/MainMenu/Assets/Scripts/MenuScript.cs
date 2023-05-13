@@ -13,6 +13,7 @@ public class MenuScript : MonoBehaviour
         GameTimer.Instance.ResetTimer();
         GameManager.Instance.gameStarted = true;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        Time.timeScale = 1f;
     }
 
     public void OnMenuButtonClick()

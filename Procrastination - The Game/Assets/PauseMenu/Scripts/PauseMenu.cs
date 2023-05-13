@@ -66,49 +66,22 @@ public class PauseMenu : MonoBehaviour
             Resume();
         }
     }
-    void FixedUpdate() 
-    {
-        if (!trashDone) 
-        {
-            trashToggle.isOn = trashDone;
-        }
-
-        if (!readDone)
-        {
-            readToggle.isOn = readDone;
-        }
-
-        if (!emailsDone)
-        {
-            emailsToggle.isOn = emailsDone;
-        }
-    }
-
-    public void Resume()
-    {
-        GameIsPaused = false;
-        pauseMenuUI.SetActive(false);
-        Time.timeScale = 1f;
-        
-    }
-
-    public void Pause()
-    {   
-        GameIsPaused = true;
-        pauseMenuUI.SetActive(true);
-        Time.timeScale = 0f;
-        
-    }
 
     public void Quit()
     {
+        if(GameManager.Instance.inTask) {
+            GameManager.Instance.sceneFinisher();
+            GameManager.Instance.inTask = false;
+        }
+        energy.currentEnergy = 5;
+        GameManager.Instance.sceneFinisher();
         Resume();
-        GameTimer.Instance.gameObject.SetActive(false);
+        GameTimer.Instance.DisableChildren();
         GameManager.Instance.gameStarted = false;
-        SceneManager.LoadScene("Menu");
         AudioManager.instance.EnableAudioSource("mainTheme");
-         GameManager.Instance.spawned = false;
-        
+        GameManager.Instance.spawned = false;
+        Destroy(Instance.gameObject);
+        SceneManager.LoadScene("Menu");
     }
 
     public void trashTask(bool isComplete)
@@ -127,4 +100,28 @@ public class PauseMenu : MonoBehaviour
     {
         emailsDone = isComplete;
     }
+
+    public void UpdateToggleUI()
+    {
+        trashToggle.SetIsOnWithoutNotify(trashDone);
+        readToggle.SetIsOnWithoutNotify(readDone);
+        emailsToggle.SetIsOnWithoutNotify(emailsDone);
+    }
+
+    public void Resume()
+    {
+        GameIsPaused = false;
+        pauseMenuUI.SetActive(false);
+        Time.timeScale = 1f;
+        UpdateToggleUI();
+    }
+
+    public void Pause()
+    {   
+        GameIsPaused = true;
+        pauseMenuUI.SetActive(true);
+        Time.timeScale = 0f;
+        UpdateToggleUI();
+}
+
 }
