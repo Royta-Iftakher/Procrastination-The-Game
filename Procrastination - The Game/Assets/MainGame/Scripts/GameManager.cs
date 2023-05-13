@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     private GameObject[] allObjects;
     public bool gameStarted = false;
     public bool win;
-    public bool inTask;
+    public bool inTask = false;
     private PlayerMovement player;
     private Energy energy;
 
@@ -66,8 +66,10 @@ public class GameManager : MonoBehaviour
     public void sceneLoader() 
     {
         allObjects = GameObject.FindObjectsOfType<GameObject>();
-        player.DisablePlayerControls();
-        GameTimer.Instance.DisableChildren();
+        if(gameStarted == true) {
+            player.DisablePlayerControls();
+            GameTimer.Instance.DisableChildren();
+        }
         foreach (GameObject obj in allObjects)
         {
             if (obj.CompareTag("GameManager") || obj.CompareTag("Player"))
@@ -88,8 +90,10 @@ public class GameManager : MonoBehaviour
             }   
             obj.SetActive(true);
         }
-        player.EnablePlayerControls();
-        GameTimer.Instance.EnableChildren();
+        if(gameStarted) {
+            player.EnablePlayerControls();
+            GameTimer.Instance.EnableChildren();
+        }
     }
 
     void Update()
@@ -104,6 +108,10 @@ public class GameManager : MonoBehaviour
         if(player == null) {
             player = FindObjectOfType<PlayerMovement>();
         }
+    }
+
+    void ResetGame() {
+        //remember to set all bool values to default;
     }
     
 }

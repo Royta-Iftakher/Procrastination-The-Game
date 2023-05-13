@@ -74,7 +74,7 @@ public class PauseMenu : MonoBehaviour
             GameManager.Instance.inTask = false;
         }
         energy.currentEnergy = 5;
-        GameManager.Instance.sceneFinisher();
+        
         Resume();
         GameTimer.Instance.DisableChildren();
         GameManager.Instance.gameStarted = false;
