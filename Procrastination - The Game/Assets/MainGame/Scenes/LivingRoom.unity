@@ -1406,6 +1406,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 693512953}
   player: {fileID: 1325366737279222949, guid: 82139f5fb84f14f498a9746d48c45adc, type: 3}
+  energy: {fileID: 0}
   trashDone: 0
   readDone: 0
   emailsDone: 0
@@ -3404,6 +3405,7 @@ MonoBehaviour:
   gameFinished: 0
   gameStarted: 0
   win: 0
+  inTask: 0
 --- !u!1 &1404118303
 GameObject:
   m_ObjectHideFlags: 0

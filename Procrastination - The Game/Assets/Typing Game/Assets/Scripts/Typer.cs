@@ -39,11 +39,6 @@ public class Typer : MonoBehaviour
         if(gameWon != true) {
             Checkinput();
         }
-        else {
-            SceneManager.UnloadSceneAsync("TypingGame");
-            GameManager.Instance.sceneFinisher();
-        }
-        
     }
 
     private void Checkinput() 

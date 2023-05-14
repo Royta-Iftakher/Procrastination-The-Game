@@ -99,6 +99,8 @@ public class PauseMenu : MonoBehaviour
     public void emailsTask(bool isComplete) 
     {
         emailsDone = isComplete;
+        Debug.Log("Emails completed");
+        energy.LoseEnergy(2);
     }
 
     public void UpdateToggleUI()

@@ -32,10 +32,7 @@ public class Energy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.H)) {
-            LoseEnergy(1);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha0)) {
+        if (currentEnergy == 0) {
             currentEnergy = startingEnergy;
             player.Restart();
         }

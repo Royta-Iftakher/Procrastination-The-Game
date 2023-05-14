@@ -3811,6 +3811,7 @@ MonoBehaviour:
   GameScreen: {fileID: 1875200427}
   EndingScreen: {fileID: 979409596}
   StartingScreen: {fileID: 1815389947}
+  WinningScreen: {fileID: 142048227}
 --- !u!4 &1961699282
 Transform:
   m_ObjectHideFlags: 0

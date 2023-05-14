@@ -59,5 +59,6 @@ public class Timer : MonoBehaviour
     {
         TypingScreen.SetActive(false);
         endingScreen.SetActive(true);
+        PauseMenu.Instance.emailsTask(true);
     }
 }
