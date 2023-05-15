@@ -9,7 +9,6 @@ public class Prompt : MonoBehaviour
 
     void Start()
     {
-        
         hidePrompt();
     }
     public void goToScene() {

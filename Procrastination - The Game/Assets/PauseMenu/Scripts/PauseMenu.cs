@@ -13,14 +13,18 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private GameObject pauseMenuUI;
     [SerializeField] private PlayerMovement player;
     [SerializeField] private Energy energy;
+    [SerializeField] private LaundryBasket laundryBasket;
     // Update is called once per frame
     public bool trashDone;
     public bool readDone;
     public bool emailsDone;
+    public bool laundryDone;
 
     [SerializeField] private Toggle trashToggle;
     [SerializeField] private Toggle readToggle;
     [SerializeField] private Toggle emailsToggle;
+    [SerializeField] private Toggle laundryToggle;
+
 
     private void Awake()
     {
@@ -42,7 +46,9 @@ public class PauseMenu : MonoBehaviour
         trashDone = false;
         readDone = false;
         emailsDone = false;
+        laundryDone = false;
 
+        laundryToggle.onValueChanged.AddListener(laundryTask);
         trashToggle.onValueChanged.AddListener(trashTask);
         readToggle.onValueChanged.AddListener(readTask);
         emailsToggle.onValueChanged.AddListener(emailsTask);
@@ -61,9 +67,12 @@ public class PauseMenu : MonoBehaviour
                 Pause();
             }
         }
-        if(trashDone && readDone && emailsDone) {
+        if(trashDone && readDone && emailsDone && laundryDone) {
             GameManager.Instance.win = true;
             Resume();
+        }
+        if(laundryBasket == null ) {
+            laundryBasket = FindObjectOfType<LaundryBasket>();
         }
     }
 
@@ -103,11 +112,20 @@ public class PauseMenu : MonoBehaviour
         energy.LoseEnergy(2);
     }
 
+    public void laundryTask(bool isComplete)
+    {
+        laundryDone = isComplete;
+        Debug.Log("Laundry completed");
+        laundryBasket.EmptyBasket();
+        energy.LoseEnergy(1);
+    }
+
     public void UpdateToggleUI()
     {
         trashToggle.SetIsOnWithoutNotify(trashDone);
         readToggle.SetIsOnWithoutNotify(readDone);
         emailsToggle.SetIsOnWithoutNotify(emailsDone);
+        laundryToggle.SetIsOnWithoutNotify(laundryDone);
     }
 
     public void Resume()
