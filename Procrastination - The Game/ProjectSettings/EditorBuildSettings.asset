@@ -27,6 +27,9 @@ EditorBuildSettings:
     path: Assets/1 MainMenu/Assets/Scenes/TutorialPage1.unity
     guid: 52d9d966e9d4540348c4f4a17248b3b2
   - enabled: 1
+    path: Assets/1 MainMenu/Assets/Scenes/OptionsScene.unity
+    guid: c079f4ecc541445c3976ff148dd5cd79
+  - enabled: 1
     path: Assets/PauseMenu/Scenes/PauseMenu.unity
     guid: c795ea5caa2296d40a397e77790ef1f1
   - enabled: 1
