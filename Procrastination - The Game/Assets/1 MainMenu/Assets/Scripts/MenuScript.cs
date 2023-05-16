@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class MenuScript : MonoBehaviour
 {
-    public string sceneName;                                //sceneName is currently TutorialPage1       
+    public string sceneName;                                    
     public void PlayGame()
     {
         AudioManager.instance.DisableAudioSource("mainTheme");
@@ -38,7 +38,7 @@ public class MenuScript : MonoBehaviour
         //Debug.Log("Button clicked!");
         AudioManager.instance.PlayDefaultButton();
         GameManager.Instance.sceneLoader();                                     //sceneLoader is a method in GameManager: it sets all the objects in the menu unactive
-        SceneManager.LoadScene("OptionsScene", LoadSceneMode.Additive);  //loads the tutorial scene when the tutorial button is clicked
+        SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);  //loads the tutorial scene when the tutorial button is clicked
         //SceneManager.LoadScene("TutorialPage1");
     }
 
