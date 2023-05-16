@@ -11,8 +11,6 @@ public class LaundryGameController : MonoBehaviour
     public GUIStyle style;
     private bool showGui = false;
 
-    public Color highlightColor = Color.yellow;
-    private Color originalColor;
 
     private PlayerMovement player;
    
@@ -21,7 +19,7 @@ public class LaundryGameController : MonoBehaviour
     private void Start()
     {
         player = FindObjectOfType<PlayerMovement>();
-        originalColor = GetComponent<Renderer>().material.color;
+        
     }
 
     void OnTriggerEnter2D(Collider2D other) 
@@ -29,7 +27,7 @@ public class LaundryGameController : MonoBehaviour
         if (other.gameObject.CompareTag("Player")) 
         {
             showGui = true;
-            GetComponent<Renderer>().material.color = highlightColor;
+            
         }
     }
 
@@ -38,7 +36,7 @@ public class LaundryGameController : MonoBehaviour
         if (other.gameObject.CompareTag("Player")) 
         {
             showGui = false;
-            GetComponent<Renderer>().material.color = originalColor;
+            
             promptCanvas.SetActive(false);
         }
     }

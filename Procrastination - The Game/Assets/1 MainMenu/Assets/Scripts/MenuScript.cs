@@ -32,5 +32,12 @@ public class MenuScript : MonoBehaviour
         SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);  //loads the tutorial scene when the tutorial button is clicked
         //SceneManager.LoadScene("TutorialPage1");
     }
+
+    public void OnOptionsButtonClick()
+    {
+        AudioManager.instance.PlayDefaultButton();
+        GameManager.Instance.sceneLoader();  
+        SceneManager.LoadScene("optionScene", LoadSceneMode.Additive);
+    }
 }
 
