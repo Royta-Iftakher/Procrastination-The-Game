@@ -752,6 +752,10 @@ MonoBehaviour:
   instructionText: {fileID: 1223342148}
   washingMachine: {fileID: 1000384777}
   taskDoneDisplayTime: 3
+  ironTableImage: {fileID: 607031324}
+  ironTableImages:
+  - {fileID: 21300000, guid: e6e55f06770e09d4a81944b2d4d64a9d, type: 3}
+  - {fileID: 21300000, guid: dce80cd1fc9ffb64f98f1234d2f6658b, type: 3}
 --- !u!1 &160378168
 GameObject:
   m_ObjectHideFlags: 0
@@ -2724,7 +2728,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 26.699951, y: -175}
+  m_AnchoredPosition: {x: 26.700012, y: -175}
   m_SizeDelta: {x: 300, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &607031324
@@ -2747,7 +2751,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: dce80cd1fc9ffb64f98f1234d2f6658b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e6e55f06770e09d4a81944b2d4d64a9d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4772,7 +4776,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e84d70bff83e5542af8b3665f8e82dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  guiText: Do Laundry
+  guiText: 
   promptCanvas: {fileID: 1650312322}
   style:
     m_Name: 
@@ -4887,6 +4891,7 @@ MonoBehaviour:
   disabledColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   warningText: {fileID: 999909280}
   laundryBasket: {fileID: 1124202872}
+  warningDisplayTime: 3
   isLaundryDone: 0
 --- !u!1 &1014838086
 GameObject:
@@ -5242,7 +5247,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fullBasketSprite: {fileID: 21300000, guid: d78bd408371262841995f8b945866633, type: 3}
-  emptyBasketSprite: {fileID: 21300000, guid: 17e5bdfa1bd440c4292f76632c1dcc67, type: 3}
+  emptyBasketSprite: {fileID: 21300000, guid: f13f4af548dca7846b279322ccebbbf9, type: 3}
   hiddenSprite: {fileID: 21300000, guid: ca1d95dda0f2b754797081b0bd578f31, type: 3}
   basketCarried: 0
 --- !u!61 &1124202873
