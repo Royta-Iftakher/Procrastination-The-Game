@@ -27,6 +27,7 @@ public class MenuScript : MonoBehaviour
     public void OnTutorialButtonClick()
     {
         //Debug.Log("Button clicked!");
+        sceneName = "TutorialPage1";
         AudioManager.instance.PlayDefaultButton();
         GameManager.Instance.sceneLoader();                                     //sceneLoader is a method in GameManager: it sets all the objects in the menu unactive
         SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);  //loads the tutorial scene when the tutorial button is clicked
@@ -36,6 +37,7 @@ public class MenuScript : MonoBehaviour
     public void OnOptionsButtonClick()
     {
         //Debug.Log("Button clicked!");
+        sceneName = "OptionsScene";
         AudioManager.instance.PlayDefaultButton();
         GameManager.Instance.sceneLoader();                                     //sceneLoader is a method in GameManager: it sets all the objects in the menu unactive
         SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);  //loads the tutorial scene when the tutorial button is clicked
