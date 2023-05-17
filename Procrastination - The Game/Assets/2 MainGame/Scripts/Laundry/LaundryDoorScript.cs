@@ -26,6 +26,13 @@ public class LaundryDoorScript : MonoBehaviour
             spriteRenderer.sprite = doorSprites[currentSpriteIndex];
             doorIcon.SetActive(false); // Hide the door icon when the door is not closed
         }
+        if (currentSpriteIndex == 0) // Check if the door is fully closed
+        {
+            doorIcon.SetActive(true); // Display the door icon when the door is closed
+        }
+        else {
+            doorIcon.SetActive(false);
+        }
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -59,6 +66,6 @@ public class LaundryDoorScript : MonoBehaviour
         yield return new WaitForSeconds(.5f); // Wait for 0.5 more second
         currentSpriteIndex = 0;
         spriteRenderer.sprite = doorSprites[currentSpriteIndex]; // Change the sprite to the closed door
-        doorIcon.SetActive(true); // Display the door icon when the door is closed
+
     }
 }

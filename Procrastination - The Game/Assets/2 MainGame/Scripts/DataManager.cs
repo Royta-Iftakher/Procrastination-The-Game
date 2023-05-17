@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class DataManager : MonoBehaviour
 {
-    [SerializeField] private float playerTimeleft;
+    [SerializeField] private string playerTimeleft;
     [SerializeField] private string playerName;
-    [SerializeField] public List<HighScore> highScores;
+    [SerializeField] private int playerScore;
 
     public static DataManager Instance;
 
@@ -26,9 +26,9 @@ public class DataManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerTimeleft = 0;
+        playerTimeleft = "";
         playerName = "";
-        highScores = new List<HighScore>();
+        playerScore = 0;
     }
 
     // Update is called once per frame
@@ -42,9 +42,14 @@ public class DataManager : MonoBehaviour
         playerName = s;
     }
 
-    public void SetScore(float s)
+    public void SetTime(string s)
     {
         playerTimeleft = s;
+    }
+
+    public void SetScore(int score)
+    {
+        playerScore = score;
     }
 
     public string GetName()
@@ -52,40 +57,14 @@ public class DataManager : MonoBehaviour
         return playerName;
     }
 
-    public float GetScore()
+    public string GetTime()
     {
         return playerTimeleft;
     }
 
-    public void AddHighScore(string name, float timeLeft)
+    public int GetScore()
     {
-        highScores.Add(new HighScore(name, timeLeft));
-        highScores.Sort();
-        if (highScores.Count > 5)
-        {
-            highScores.RemoveAt(5);
-        }
+        return playerScore;
     }
 
-    public List<HighScore> GetHighScores()
-    {
-        return highScores;
-    }
-
-    public struct HighScore : System.IComparable<HighScore>
-    {
-        public string name;
-        public float timeLeft;
-
-        public HighScore(string name, float timeLeft)
-        {
-            this.name = name;
-            this.timeLeft = timeLeft;
-        }
-
-        public int CompareTo(HighScore other)
-        {
-            return other.timeLeft.CompareTo(this.timeLeft);
-        }
-    }
 }

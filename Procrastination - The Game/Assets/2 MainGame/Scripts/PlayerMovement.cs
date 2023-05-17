@@ -18,6 +18,7 @@ using UnityEngine;
         public bool isKickboard = false;
         private Camera mainCamera;
         public PauseMenu PauseMenu;
+        private bool playerCanMove = true;
         
         public NameTag nameTag;
         public Vector3 normalNameTagOffset;
@@ -37,6 +38,7 @@ using UnityEngine;
 
         private void Update()
         {
+            Restart();
             if (alive && PauseMenu.GameIsPaused == false)
             {
                 Attack();
@@ -67,6 +69,8 @@ using UnityEngine;
         }
         public void KickBoard()
         {
+            if (!playerCanMove)
+                return;
             if (Input.GetKeyDown(KeyCode.Alpha2) && isKickboard)
             {
                 isKickboard = false;
@@ -84,11 +88,12 @@ using UnityEngine;
                 anim.SetBool("isKickBoard", false);
                 nameTag.AdjustOffset(normalNameTagOffset);
             }
-
         }
 
         void Run()
         {
+            if (!playerCanMove)
+                return;
             if (!isKickboard)
             {
                 Vector3 moveVelocity = Vector3.zero;
@@ -140,6 +145,8 @@ using UnityEngine;
         }
         void Jump()
         {
+            if (!playerCanMove)
+                return;
             if ((Input.GetButtonDown("Jump") || Input.GetAxisRaw("Vertical") > 0)
             && !anim.GetBool("isJump"))
             {
@@ -160,10 +167,12 @@ using UnityEngine;
         }
         void Attack()
         {
-            if (Input.GetKeyDown(KeyCode.Alpha1))
-            {
-                anim.SetTrigger("attack");
-            }
+            if (!playerCanMove)
+            return;
+                if (Input.GetKeyDown(KeyCode.Alpha1))
+                {
+                    anim.SetTrigger("attack");
+                }
         }
 
         public void Die()
@@ -175,31 +184,30 @@ using UnityEngine;
         }
         public void Restart()
         {
+            if(alive == false) {
                 isKickboard = false;
                 anim.SetBool("isKickBoard", false);
                 anim.SetTrigger("idle");
                 alive = true;
+            }
         }
         public void Hurt()
         {
             anim.SetTrigger("hurt");
-            if (direction == 1)
-                rb.AddForce(new Vector2(-5f, 1f), ForceMode2D.Impulse);
-            else
-                rb.AddForce(new Vector2(5f, 1f), ForceMode2D.Impulse);
         }
 
 
         public void DisablePlayerControls()
         {
-            rb.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation; // Freeze the y-axis
-            this.enabled = false; // Disable the PlayerMovement script
+            rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
+            playerCanMove = false;
         }
 
         public void EnablePlayerControls()
         {
-            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-            this.enabled = true; // Enable the PlayerMovement script
+            rb.constraints = RigidbodyConstraints2D.FreezeRotation; 
+            playerCanMove = true;
         }
+
 
     }

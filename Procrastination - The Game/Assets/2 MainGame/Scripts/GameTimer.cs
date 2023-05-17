@@ -13,7 +13,26 @@ public class GameTimer : MonoBehaviour
     private int minutes = 0;
     private int timeScale = 60; // 1 real second = 1 in-game minute
     private float timeElapsed = 0.0f;
-    private float dayDurationInSeconds = 720.0f * 60.0f; // 12 hours x 60 minutes x 60 seconds
+    private float dayDurationInSeconds =  720.0f * 60.0f; // 12 hours x 60 minutes x 60 seconds
+
+    public float timeLeftInSeconds;
+
+    private bool isTimePaused = false; // Add a flag to check if the time is paused
+
+    public void PauseTime()
+    {
+        isTimePaused = true;
+    }
+
+    public void UnpauseTime()
+    {
+        isTimePaused = false;
+    }
+
+    public string GetTimeLeft()
+    {
+        return timeLeft;
+    }
 
     void Awake()
     {
@@ -37,7 +56,7 @@ public class GameTimer : MonoBehaviour
 
     void Update()
     {
-        if(GameManager.Instance.gameStarted == true) 
+        if(GameManager.Instance.gameStarted == true && !isTimePaused) 
         {
             // Calculate the time elapsed since the last frame
             float deltaTime = Time.deltaTime * timeScale;
@@ -50,11 +69,22 @@ public class GameTimer : MonoBehaviour
             // Update the time text
             UpdateTimeText();
 
-            float timeLeftInSeconds = dayDurationInSeconds - timeElapsed;
-            int hoursLeft = (int)(timeLeftInSeconds / 3600.0f);
-            int minutesLeft = (int)((timeLeftInSeconds % 3600.0f) / 60.0f);
-            timeLeft = string.Format("{0:00}:{1:00}", hoursLeft, minutesLeft);
+            timeLeftInSeconds = dayDurationInSeconds - timeElapsed;
+
+            if (timeLeft != "00:00")
+            {
+                int hoursLeft = (int)(timeLeftInSeconds / 3600.0f);
+                int minutesLeft = (int)((timeLeftInSeconds % 3600.0f) / 60.0f);
+                timeLeft = string.Format("{0:00}:{1:00}", hoursLeft, minutesLeft);
+            }
+            else
+            {
+                timeLeft = "You ran out of time";
+                GameManager.Instance.lose = true;
+            }
         }
+
+
     }
 
     void UpdateTimeText()
@@ -109,5 +139,6 @@ public class GameTimer : MonoBehaviour
     public void DisableChildren() {
         DisableChildren(transform);
     }
+
 
 }

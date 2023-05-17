@@ -47,7 +47,7 @@ public class Game : MonoBehaviour
     public void goBack() {
         SceneManager.UnloadSceneAsync("TypingGame");
         GameManager.Instance.sceneFinisher();
-        Time.timeScale = 1f;                              //so does it doesn't pause main game after pressing go back
+        Time.timeScale = 1f;                        //so does it doesn't pause main game after pressing go back
     }
 
     public void goBackFinished() {

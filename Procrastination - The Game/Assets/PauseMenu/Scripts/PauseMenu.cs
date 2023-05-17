@@ -14,6 +14,7 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private PlayerMovement player;
     [SerializeField] private Energy energy;
     [SerializeField] private LaundryBasket laundryBasket;
+    [SerializeField] private Score score;
     // Update is called once per frame
     public bool trashDone;
     public bool readDone;
@@ -24,6 +25,7 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private Toggle readToggle;
     [SerializeField] private Toggle emailsToggle;
     [SerializeField] private Toggle laundryToggle;
+
 
 
     private void Awake()
@@ -43,6 +45,8 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(false);
         player = FindObjectOfType<PlayerMovement>();
         energy = FindObjectOfType<Energy>();
+        score = FindObjectOfType<Score>();
+
         trashDone = false;
         readDone = false;
         emailsDone = false;
@@ -82,15 +86,11 @@ public class PauseMenu : MonoBehaviour
             GameManager.Instance.sceneFinisher();
             GameManager.Instance.inTask = false;
         }
-        energy.currentEnergy = 5;
-        
         Resume();
-        GameTimer.Instance.DisableChildren();
-        GameManager.Instance.gameStarted = false;
-        AudioManager.instance.EnableAudioSource("mainTheme");
-        GameManager.Instance.spawned = false;
-        Destroy(Instance.gameObject);
         SceneManager.LoadScene("Menu");
+        GameManager.Instance.ResetGame();
+        Destroy(Instance.gameObject);
+        
     }
 
     public void trashTask(bool isComplete)
@@ -98,6 +98,7 @@ public class PauseMenu : MonoBehaviour
         trashDone = isComplete;
         Debug.Log("Trash completed");
         energy.LoseEnergy(2);
+        score.AddScore("trash");
     }
 
     public void readTask(bool isComplete)
@@ -110,6 +111,7 @@ public class PauseMenu : MonoBehaviour
         emailsDone = isComplete;
         Debug.Log("Emails completed");
         energy.LoseEnergy(2);
+        score.AddScore("email");
     }
 
     public void laundryTask(bool isComplete)
@@ -118,6 +120,7 @@ public class PauseMenu : MonoBehaviour
         Debug.Log("Laundry completed");
         laundryBasket.EmptyBasket();
         energy.LoseEnergy(1);
+        score.AddScore("laundry");
     }
 
     public void UpdateToggleUI()
@@ -142,6 +145,15 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         UpdateToggleUI();
-}
+    }
 
+    public void emailsFail() 
+    {
+        energy.LoseEnergy(2);
+    }
+
+    public void Restart()
+    {
+        Destroy(Instance.gameObject);
+    }
 }

@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
     public bool gameStarted = false;
     public bool win;
     public bool inTask = false;
+    public bool endScene = false;
+    public bool lose;
     private PlayerMovement player;
     private Energy energy;
 
@@ -102,16 +104,41 @@ public class GameManager : MonoBehaviour
             gameFinished = false;
             sceneFinisher();
         }
-        if(win == true) {
+        if(win == true && endScene == false) {
+            GameTimer.Instance.DisableChildren();
+            Time.timeScale = 1f;
+            GameTimer.Instance.PauseTime();
             SceneManager.LoadScene("End");
+            PauseMenu.Instance.Restart();
+            endScene = true;
         }
         if(player == null) {
             player = FindObjectOfType<PlayerMovement>();
         }
+        if(lose == true && endScene == false) {
+            GameTimer.Instance.DisableChildren();
+            Time.timeScale = 1f;
+            GameTimer.Instance.PauseTime();
+            SceneManager.LoadScene("End");
+            PauseMenu.Instance.Restart();
+            endScene = true;
+        }
     }
 
-    void ResetGame() {
+    public void ResetGame() {
         //remember to set all bool values to default;
+        GameTimer.Instance.DisableChildren();
+        gameStarted = false;
+        GameTimer.Instance.UnpauseTime();
+        Score.Instance.ResetScores();
+        AudioManager.instance.EnableAudioSource("mainTheme");
+        spawned = false;
+        endScene = false;
+        win = false;
+        lose = false;
+        energy.currentEnergy = 5;
     }
+
+    
     
 }

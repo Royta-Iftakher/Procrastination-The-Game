@@ -24,6 +24,7 @@ public class LaundryBasket : MonoBehaviour
         {
             // Player "carries" the basket
             spriteRenderer.sprite = hiddenSprite;
+            Inventory.Instance.ShowItemImage();
             basketCarried = true;
         }
     }

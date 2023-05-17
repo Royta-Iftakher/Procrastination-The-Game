@@ -62,6 +62,7 @@ public class WashingMachine : MonoBehaviour
         // Only start the laundry if it's not already running and the laundry basket is being carried
         if (!isLaundryDone && laundryBasket.basketCarried)
         {
+            Inventory.Instance.HideItemImage();
             isLaundryStarted = true;
             timer = laundryTime;
             startButton.interactable = false; // Disable the button while the laundry is running
