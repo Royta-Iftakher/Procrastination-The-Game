@@ -16,7 +16,7 @@ public class Phone : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, I
     {
         rectTransform = GetComponent<RectTransform>();
         originalPosition = rectTransform.position;
-        phoneOutPosition = new Vector3(originalPosition.x, originalPosition.y + 575f, originalPosition.z);
+        phoneOutPosition = new Vector3(originalPosition.x, originalPosition.y + hoverMoveDistance, originalPosition.z);
     }
 
     private void Update()
@@ -62,7 +62,7 @@ public class Phone : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, I
     private void OpenPhone()
     {
         StopAllCoroutines();
-        StartCoroutine(MovePhone(phoneOutPosition, 0.25f));
+        StartCoroutine(MovePhone(new Vector3(originalPosition.x, originalPosition.y + hoverMoveDistance, originalPosition.z), 0.25f)); 
         phonePulled = true;
     }
 
@@ -73,7 +73,7 @@ public class Phone : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, I
         phonePulled = false;
     }
 
-    IEnumerator MovePhone(Vector3 targetPosition, float duration)
+    IEnumerator MovePhone(Vector3 targetPosition, float duration) // this has been changed to expect a Vector3
     {
         float time = 0;
         Vector3 startPosition = rectTransform.position;
