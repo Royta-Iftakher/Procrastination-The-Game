@@ -34,6 +34,11 @@ public class GameTimer : MonoBehaviour
         return timeLeft;
     }
 
+    public float GetTimeLeftFloat()
+    {
+        return timeLeftInSeconds;
+    }
+
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -107,6 +112,12 @@ public class GameTimer : MonoBehaviour
         hours = 10;
         minutes = 0;
         timeElapsed = 0.0f;
+    }
+
+    public void timerReset() {
+        hours = 10;
+        minutes = 0;
+        timeLeftInSeconds = 0f;
     }
 
     public void DisableChildren(Transform parent)

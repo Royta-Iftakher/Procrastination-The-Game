@@ -49,7 +49,6 @@ public class Score : MonoBehaviour
         if (activityPoints.ContainsKey(activity))
         {
             ActivityScores[activity] += activityPoints[activity];
-            DataManager.Instance.SetScore(ActivityScores[activity]);
             MarkActivityDone(activity);
 
             // Update letter grade
@@ -57,8 +56,11 @@ public class Score : MonoBehaviour
             foreach(var score in ActivityScores.Values)
             {
                 totalScore += score;
+                
             }
-
+            
+            DataManager.Instance.SetScore(totalScore);
+            
             if (totalScore >= 100)
                 letterGrade = 0;
             else if (totalScore >= 90)

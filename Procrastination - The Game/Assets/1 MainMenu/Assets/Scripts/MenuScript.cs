@@ -12,6 +12,7 @@ public class MenuScript : MonoBehaviour
         AudioManager.instance.PlayOpenBook();
         GameTimer.Instance.EnableChildren();
         GameTimer.Instance.ResetTimer();
+        Score.Instance.ResetScores();
         GameManager.Instance.gameStarted = true;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         Time.timeScale = 1f;
@@ -43,6 +44,14 @@ public class MenuScript : MonoBehaviour
         GameManager.Instance.sceneLoader();                                     //sceneLoader is a method in GameManager: it sets all the objects in the menu unactive
         SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);  //loads the tutorial scene when the tutorial button is clicked
         //SceneManager.LoadScene("TutorialPage1");
+    }
+
+    public void OnLeaderboardButtonClick()
+    {
+        sceneName = "HighScoreScene";
+        AudioManager.instance.PlayDefaultButton();
+        GameManager.Instance.sceneLoader();
+        SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
     }
 
 }

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class DataManager : MonoBehaviour
 {
-    [SerializeField] private string playerTimeleft;
     [SerializeField] private string playerName;
     [SerializeField] private int playerScore;
 
@@ -26,7 +25,6 @@ public class DataManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerTimeleft = "";
         playerName = "";
         playerScore = 0;
     }
@@ -42,11 +40,6 @@ public class DataManager : MonoBehaviour
         playerName = s;
     }
 
-    public void SetTime(string s)
-    {
-        playerTimeleft = s;
-    }
-
     public void SetScore(int score)
     {
         playerScore = score;
@@ -57,10 +50,6 @@ public class DataManager : MonoBehaviour
         return playerName;
     }
 
-    public string GetTime()
-    {
-        return playerTimeleft;
-    }
 
     public int GetScore()
     {

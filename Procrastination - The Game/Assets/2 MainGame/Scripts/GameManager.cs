@@ -130,7 +130,6 @@ public class GameManager : MonoBehaviour
         GameTimer.Instance.DisableChildren();
         gameStarted = false;
         GameTimer.Instance.UnpauseTime();
-        Score.Instance.ResetScores();
         AudioManager.instance.EnableAudioSource("mainTheme");
         spawned = false;
         endScene = false;

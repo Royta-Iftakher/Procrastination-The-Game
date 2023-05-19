@@ -91,6 +91,8 @@ public class PauseMenu : MonoBehaviour
         Resume();
         AudioManager.instance.PlayOpenBook();
         SceneManager.LoadScene("Menu");
+        GameTimer.Instance.timerReset();
+        Score.Instance.ResetScores();
         GameManager.Instance.ResetGame();
         Destroy(Instance.gameObject);
         
