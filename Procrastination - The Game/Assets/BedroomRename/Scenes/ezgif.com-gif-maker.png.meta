@@ -33,7 +33,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -70,7 +70,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -2437,116 +2437,116 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      ezgif.com-gif-maker_0: -1885799905
-      ezgif.com-gif-maker_1: 1593998603
-      ezgif.com-gif-maker_10: -916590794
-      ezgif.com-gif-maker_100: 24900775
-      ezgif.com-gif-maker_101: -18954848
-      ezgif.com-gif-maker_102: -1433411303
-      ezgif.com-gif-maker_103: -480626203
       ezgif.com-gif-maker_104: -905156568
-      ezgif.com-gif-maker_105: 439439928
-      ezgif.com-gif-maker_106: -425236732
-      ezgif.com-gif-maker_107: -1737416523
-      ezgif.com-gif-maker_108: 1941534962
-      ezgif.com-gif-maker_109: -860014171
-      ezgif.com-gif-maker_11: 1183797249
-      ezgif.com-gif-maker_12: -1266332715
-      ezgif.com-gif-maker_13: 912595411
-      ezgif.com-gif-maker_14: -2009727797
-      ezgif.com-gif-maker_15: -909431161
-      ezgif.com-gif-maker_16: 306749906
-      ezgif.com-gif-maker_17: 2074094420
-      ezgif.com-gif-maker_18: 1859555034
-      ezgif.com-gif-maker_19: -34853444
-      ezgif.com-gif-maker_2: 558924407
-      ezgif.com-gif-maker_20: 1413298594
-      ezgif.com-gif-maker_21: 1172069497
-      ezgif.com-gif-maker_22: 1622222915
-      ezgif.com-gif-maker_23: -1649808000
-      ezgif.com-gif-maker_24: 2077160010
-      ezgif.com-gif-maker_25: -300672868
-      ezgif.com-gif-maker_26: -1414104239
-      ezgif.com-gif-maker_27: -928848838
-      ezgif.com-gif-maker_28: -801628132
-      ezgif.com-gif-maker_29: 1732968109
-      ezgif.com-gif-maker_3: -1690999161
-      ezgif.com-gif-maker_30: 870060533
-      ezgif.com-gif-maker_31: -211050686
-      ezgif.com-gif-maker_32: 703968563
-      ezgif.com-gif-maker_33: 1333241645
-      ezgif.com-gif-maker_34: -382663281
-      ezgif.com-gif-maker_35: 1956503664
-      ezgif.com-gif-maker_36: 126179506
-      ezgif.com-gif-maker_37: -1293684495
-      ezgif.com-gif-maker_38: 1089421575
-      ezgif.com-gif-maker_39: -703411248
-      ezgif.com-gif-maker_4: 1162989156
-      ezgif.com-gif-maker_40: -1709995150
-      ezgif.com-gif-maker_41: 443180943
-      ezgif.com-gif-maker_42: -1634518150
-      ezgif.com-gif-maker_43: 1508300186
-      ezgif.com-gif-maker_44: -1184707311
-      ezgif.com-gif-maker_45: 371238757
-      ezgif.com-gif-maker_46: 562855141
-      ezgif.com-gif-maker_47: 1749739692
-      ezgif.com-gif-maker_48: 1863736136
-      ezgif.com-gif-maker_49: -507773200
-      ezgif.com-gif-maker_5: -260761129
-      ezgif.com-gif-maker_50: 285803831
-      ezgif.com-gif-maker_51: 133304110
-      ezgif.com-gif-maker_52: -1134188357
-      ezgif.com-gif-maker_53: 958906931
-      ezgif.com-gif-maker_54: 1496173162
-      ezgif.com-gif-maker_55: 1955472809
-      ezgif.com-gif-maker_56: 780654111
-      ezgif.com-gif-maker_57: 698118981
-      ezgif.com-gif-maker_58: -1091531366
-      ezgif.com-gif-maker_59: -1249717590
-      ezgif.com-gif-maker_6: 2036422226
-      ezgif.com-gif-maker_60: 1170850611
-      ezgif.com-gif-maker_61: 1422562915
       ezgif.com-gif-maker_62: 759403293
-      ezgif.com-gif-maker_63: 543954598
+      ezgif.com-gif-maker_0: -1885799905
+      ezgif.com-gif-maker_101: -18954848
+      ezgif.com-gif-maker_99: 2115448046
+      ezgif.com-gif-maker_4: 1162989156
+      ezgif.com-gif-maker_47: 1749739692
+      ezgif.com-gif-maker_11: 1183797249
+      ezgif.com-gif-maker_88: -899712929
+      ezgif.com-gif-maker_38: 1089421575
+      ezgif.com-gif-maker_5: -260761129
+      ezgif.com-gif-maker_54: 1496173162
       ezgif.com-gif-maker_64: -1112749920
+      ezgif.com-gif-maker_7: -243973447
+      ezgif.com-gif-maker_46: 562855141
+      ezgif.com-gif-maker_6: 2036422226
+      ezgif.com-gif-maker_37: -1293684495
+      ezgif.com-gif-maker_105: 439439928
+      ezgif.com-gif-maker_19: -34853444
+      ezgif.com-gif-maker_10: -916590794
+      ezgif.com-gif-maker_22: 1622222915
+      ezgif.com-gif-maker_91: -412097172
+      ezgif.com-gif-maker_55: 1955472809
+      ezgif.com-gif-maker_76: 1203890186
       ezgif.com-gif-maker_65: -1596433204
       ezgif.com-gif-maker_66: -1206491021
-      ezgif.com-gif-maker_67: 1891315046
-      ezgif.com-gif-maker_68: -1439496718
-      ezgif.com-gif-maker_69: -1477851717
-      ezgif.com-gif-maker_7: -243973447
-      ezgif.com-gif-maker_70: -1639730989
-      ezgif.com-gif-maker_71: -817369121
-      ezgif.com-gif-maker_72: -836786913
-      ezgif.com-gif-maker_73: -2058182222
-      ezgif.com-gif-maker_74: 810587844
-      ezgif.com-gif-maker_75: -226917289
-      ezgif.com-gif-maker_76: 1203890186
-      ezgif.com-gif-maker_77: -1189962170
-      ezgif.com-gif-maker_78: -1434241770
-      ezgif.com-gif-maker_79: 363270830
-      ezgif.com-gif-maker_8: -1907401009
-      ezgif.com-gif-maker_80: 1269049475
-      ezgif.com-gif-maker_81: 155140752
-      ezgif.com-gif-maker_82: -1179645862
-      ezgif.com-gif-maker_83: 757507908
-      ezgif.com-gif-maker_84: -256669663
-      ezgif.com-gif-maker_85: -567096270
-      ezgif.com-gif-maker_86: -475288136
-      ezgif.com-gif-maker_87: 182837495
-      ezgif.com-gif-maker_88: -899712929
       ezgif.com-gif-maker_89: -2146389570
-      ezgif.com-gif-maker_9: 1579268492
-      ezgif.com-gif-maker_90: -1422326572
-      ezgif.com-gif-maker_91: -412097172
-      ezgif.com-gif-maker_92: -1252882442
-      ezgif.com-gif-maker_93: 1036908428
-      ezgif.com-gif-maker_94: 53050307
-      ezgif.com-gif-maker_95: 703279560
       ezgif.com-gif-maker_96: -864741304
+      ezgif.com-gif-maker_108: 1941534962
+      ezgif.com-gif-maker_32: 703968563
+      ezgif.com-gif-maker_26: -1414104239
+      ezgif.com-gif-maker_16: 306749906
+      ezgif.com-gif-maker_95: 703279560
+      ezgif.com-gif-maker_73: -2058182222
+      ezgif.com-gif-maker_35: 1956503664
+      ezgif.com-gif-maker_74: 810587844
+      ezgif.com-gif-maker_3: -1690999161
+      ezgif.com-gif-maker_87: 182837495
+      ezgif.com-gif-maker_15: -909431161
+      ezgif.com-gif-maker_68: -1439496718
       ezgif.com-gif-maker_97: -1705380270
+      ezgif.com-gif-maker_34: -382663281
+      ezgif.com-gif-maker_61: 1422562915
+      ezgif.com-gif-maker_51: 133304110
+      ezgif.com-gif-maker_33: 1333241645
+      ezgif.com-gif-maker_17: 2074094420
+      ezgif.com-gif-maker_43: 1508300186
       ezgif.com-gif-maker_98: 644094098
-      ezgif.com-gif-maker_99: 2115448046
+      ezgif.com-gif-maker_107: -1737416523
+      ezgif.com-gif-maker_84: -256669663
+      ezgif.com-gif-maker_40: -1709995150
+      ezgif.com-gif-maker_27: -928848838
+      ezgif.com-gif-maker_75: -226917289
+      ezgif.com-gif-maker_90: -1422326572
+      ezgif.com-gif-maker_49: -507773200
+      ezgif.com-gif-maker_57: 698118981
+      ezgif.com-gif-maker_71: -817369121
+      ezgif.com-gif-maker_28: -801628132
+      ezgif.com-gif-maker_41: 443180943
+      ezgif.com-gif-maker_63: 543954598
+      ezgif.com-gif-maker_81: 155140752
+      ezgif.com-gif-maker_23: -1649808000
+      ezgif.com-gif-maker_102: -1433411303
+      ezgif.com-gif-maker_85: -567096270
+      ezgif.com-gif-maker_52: -1134188357
+      ezgif.com-gif-maker_39: -703411248
+      ezgif.com-gif-maker_8: -1907401009
+      ezgif.com-gif-maker_58: -1091531366
+      ezgif.com-gif-maker_12: -1266332715
+      ezgif.com-gif-maker_45: 371238757
+      ezgif.com-gif-maker_29: 1732968109
+      ezgif.com-gif-maker_94: 53050307
+      ezgif.com-gif-maker_25: -300672868
+      ezgif.com-gif-maker_80: 1269049475
+      ezgif.com-gif-maker_100: 24900775
+      ezgif.com-gif-maker_53: 958906931
+      ezgif.com-gif-maker_20: 1413298594
+      ezgif.com-gif-maker_13: 912595411
+      ezgif.com-gif-maker_59: -1249717590
+      ezgif.com-gif-maker_72: -836786913
+      ezgif.com-gif-maker_78: -1434241770
+      ezgif.com-gif-maker_2: 558924407
+      ezgif.com-gif-maker_86: -475288136
+      ezgif.com-gif-maker_21: 1172069497
+      ezgif.com-gif-maker_93: 1036908428
+      ezgif.com-gif-maker_56: 780654111
+      ezgif.com-gif-maker_1: 1593998603
+      ezgif.com-gif-maker_30: 870060533
+      ezgif.com-gif-maker_77: -1189962170
+      ezgif.com-gif-maker_48: 1863736136
+      ezgif.com-gif-maker_9: 1579268492
+      ezgif.com-gif-maker_67: 1891315046
+      ezgif.com-gif-maker_31: -211050686
+      ezgif.com-gif-maker_82: -1179645862
+      ezgif.com-gif-maker_103: -480626203
+      ezgif.com-gif-maker_24: 2077160010
+      ezgif.com-gif-maker_70: -1639730989
+      ezgif.com-gif-maker_60: 1170850611
+      ezgif.com-gif-maker_106: -425236732
+      ezgif.com-gif-maker_50: 285803831
+      ezgif.com-gif-maker_83: 757507908
+      ezgif.com-gif-maker_79: 363270830
+      ezgif.com-gif-maker_42: -1634518150
+      ezgif.com-gif-maker_92: -1252882442
+      ezgif.com-gif-maker_18: 1859555034
+      ezgif.com-gif-maker_14: -2009727797
+      ezgif.com-gif-maker_69: -1477851717
+      ezgif.com-gif-maker_44: -1184707311
+      ezgif.com-gif-maker_36: 126179506
+      ezgif.com-gif-maker_109: -860014171
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

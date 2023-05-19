@@ -16,6 +16,7 @@ TagManager:
   - List Element
   - PauseMenu
   - AudioManager
+  - Prompt
   layers:
   - Default
   - TransparentFX

@@ -10,7 +10,6 @@ public class AudioManager : MonoBehaviour
     public AudioClip defaultButton;
     public AudioSource mainTheme; 
 
-    
     private AudioSource[] audioSources;
 
     private void Awake()
@@ -51,12 +50,13 @@ public class AudioManager : MonoBehaviour
         {
             if (source.clip.name == clipName)
             {
-                // Disable the AudioSource if it exists
+                // Enable the AudioSource if it exists
                 source.enabled = true;
                 break;
             }
         }
     }
+
 
 
     public void PlaySound(AudioClip clip)
@@ -74,4 +74,5 @@ public class AudioManager : MonoBehaviour
     {
         PlaySound(defaultButton);
     }
+
 }

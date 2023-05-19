@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro; // Import this if the Yes and No options are TextMeshProUGUI
 
-public class Prompt : MonoBehaviour
+public class PromptOutside : MonoBehaviour
 {
 
     // The buttons for the Yes and No options
@@ -45,21 +45,11 @@ private string[] noOptions = {
 
 
     private System.Random rand = new System.Random();
-    
+
     void Start()
     {
-        if (gameObject.tag != "Prompt")
-        {
-            // If this GameObject doesn't have the "Prompt" tag, disable this script
-            this.enabled = false;
-        }
-        else
-        {
-            // If this GameObject does have the "Prompt" tag, hide the prompt initially
-            hidePrompt();
-        }
+        hidePrompt();
     }
-
 
     public void goToScene()
     {
@@ -76,10 +66,9 @@ private string[] noOptions = {
 
     public void hidePrompt()
     {
-        if(yesButton.gameObject != null) {
+        // Hide the buttons
         yesButton.gameObject.SetActive(false);
         noButton.gameObject.SetActive(false);
-        }
     }
 
     public void showPrompt()

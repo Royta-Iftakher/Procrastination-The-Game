@@ -9,7 +9,6 @@ public class Timer : MonoBehaviour
     [SerializeField] public GameObject TypingScreen;
     public TextMeshProUGUI timerText;
     [SerializeField] AudioSource audio;
-
     public float currentTime;
     public bool countDown = true;
 
@@ -20,6 +19,7 @@ public class Timer : MonoBehaviour
     
     private float updateInterval = 0.1f; // Update every second
     private float timer;
+
 
     // Start is called before the first frame update
     void Start()
@@ -43,7 +43,8 @@ public class Timer : MonoBehaviour
             AudioSource.PlayClipAtPoint(audio.clip, transform.position);
             timerText.color = Color.red;
             enabled = false;
-            endScreen();
+            endScreen();        
+
         }
 
         if (currentTime <= 10 ) {
@@ -55,6 +56,8 @@ public class Timer : MonoBehaviour
             timer = 0f;
             SetTimerText();
         }
+
+
     }
 
 

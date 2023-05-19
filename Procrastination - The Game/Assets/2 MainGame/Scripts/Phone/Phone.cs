@@ -1,43 +1,90 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems; // Required when using Event data
-using UnityEngine.UI; // Required when Using UI elements.
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class Phone : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     public float hoverMoveDistance = 10f;
     private Vector3 originalPosition;
+    private Vector3 phoneOutPosition;
 
+    private bool phonePulled = false;
     private RectTransform rectTransform;
 
-    private void Start() 
+    private void Start()
     {
         rectTransform = GetComponent<RectTransform>();
         originalPosition = rectTransform.position;
+        phoneOutPosition = new Vector3(originalPosition.x, originalPosition.y + 575f, originalPosition.z);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            if(phonePulled)
+            {
+                ClosePhone();
+            }
+            else
+            {
+                OpenPhone();
+            }
+        }
     }
 
     // When the mouse enters the phone
-    public void OnPointerEnter(PointerEventData eventData) 
+    public void OnPointerEnter(PointerEventData eventData)
     {
-        rectTransform.position += new Vector3(0, hoverMoveDistance, 0);
+        StopAllCoroutines();
+        StartCoroutine(MovePhone(originalPosition + new Vector3(0, hoverMoveDistance, 0), 0.25f));
     }
 
     // When the mouse exits the phone
-    public void OnPointerExit(PointerEventData eventData) 
+    public void OnPointerExit(PointerEventData eventData)
     {
-        rectTransform.position = originalPosition;
+        StopAllCoroutines();
+        StartCoroutine(MovePhone(originalPosition, 0.25f));
     }
 
     // When the phone is clicked
-    public void OnPointerClick(PointerEventData eventData) 
+    public void OnPointerClick(PointerEventData eventData)
     {
-        rectTransform.position = new Vector3(rectTransform.position.x, originalPosition.y + 575f, rectTransform.position.z);
+        OpenPhone();
     }
 
-    public void OnCloseButtonClicked() 
+    public void OnCloseButtonClicked()
     {
-        rectTransform.position = originalPosition;
+        ClosePhone();
     }
 
+    private void OpenPhone()
+    {
+        StopAllCoroutines();
+        StartCoroutine(MovePhone(phoneOutPosition, 0.25f));
+        phonePulled = true;
+    }
+
+    private void ClosePhone()
+    {
+        StopAllCoroutines();
+        StartCoroutine(MovePhone(originalPosition, 0.25f));
+        phonePulled = false;
+    }
+
+    IEnumerator MovePhone(Vector3 targetPosition, float duration)
+    {
+        float time = 0;
+        Vector3 startPosition = rectTransform.position;
+
+        while (time < duration)
+        {
+            time += Time.deltaTime;
+            rectTransform.position = Vector3.Lerp(startPosition, targetPosition, time / duration);
+            yield return null;
+        }
+
+        rectTransform.position = targetPosition;
+    }
 }

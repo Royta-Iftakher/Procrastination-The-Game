@@ -9,6 +9,7 @@ public class MenuScript : MonoBehaviour
     public void PlayGame()
     {
         AudioManager.instance.DisableAudioSource("mainTheme");
+        AudioManager.instance.PlayOpenBook();
         GameTimer.Instance.EnableChildren();
         GameTimer.Instance.ResetTimer();
         GameManager.Instance.gameStarted = true;

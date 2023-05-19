@@ -10,6 +10,7 @@ public class PauseMenu : MonoBehaviour
 
     public static bool GameIsPaused = false;
 
+    [SerializeField] private Button pauseButton;
     [SerializeField] private GameObject pauseMenuUI;
     [SerializeField] private PlayerMovement player;
     [SerializeField] private Energy energy;
@@ -25,6 +26,7 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private Toggle readToggle;
     [SerializeField] private Toggle emailsToggle;
     [SerializeField] private Toggle laundryToggle;
+    
 
 
 
@@ -71,7 +73,7 @@ public class PauseMenu : MonoBehaviour
                 Pause();
             }
         }
-        if(trashDone && readDone && emailsDone && laundryDone) {
+        if(trashDone && emailsDone && laundryDone) {
             GameManager.Instance.win = true;
             Resume();
         }
@@ -87,6 +89,7 @@ public class PauseMenu : MonoBehaviour
             GameManager.Instance.inTask = false;
         }
         Resume();
+        AudioManager.instance.PlayOpenBook();
         SceneManager.LoadScene("Menu");
         GameManager.Instance.ResetGame();
         Destroy(Instance.gameObject);
@@ -133,14 +136,17 @@ public class PauseMenu : MonoBehaviour
 
     public void Resume()
     {
+        pauseButton.gameObject.SetActive(true);
         GameIsPaused = false;
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         UpdateToggleUI();
+        
     }
 
     public void Pause()
     {   
+        pauseButton.gameObject.SetActive(false);
         GameIsPaused = true;
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;

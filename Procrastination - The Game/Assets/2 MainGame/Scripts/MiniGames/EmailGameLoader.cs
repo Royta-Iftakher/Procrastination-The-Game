@@ -16,14 +16,17 @@ public class EmailGameLoader : MonoBehaviour
     private Color originalColor;
 
     private PlayerMovement player;
+    private Prompt prompt;
 
     private Collider2D customCollider2D; // Cache the Collider2D component
+    
 
     private void Start()
     {
         player = FindObjectOfType<PlayerMovement>();
         originalColor = GetComponent<Renderer>().material.color;
         customCollider2D = GetComponent<Collider2D>(); // Get the Collider2D component
+        prompt = FindObjectOfType<Prompt>();
     }
 
     void OnTriggerEnter2D(Collider2D other) 
@@ -41,7 +44,7 @@ public class EmailGameLoader : MonoBehaviour
         {
             showGui = false;
             GetComponent<Renderer>().material.color = originalColor;
-            promptCanvas.SetActive(false);
+            prompt.hidePrompt();
         }
     }
 
@@ -73,7 +76,8 @@ public class EmailGameLoader : MonoBehaviour
                 player.isKickboard = false;
                 player.KickBoard();
                 GameManager.Instance.sceneName = sceneToLoad;
-                promptCanvas.SetActive(true);
+                
+                prompt.showPrompt();
             }
         }
     }
