@@ -13,7 +13,7 @@ EditorBuildSettings:
     guid: 7143771c3928c9b4f8d85754ed8f270d
   - enabled: 1
     path: Assets/2 MainGame/Scenes/Outside.unity
-    guid: 945c47c451e4de1488b4f0e285155606
+    guid: d7763b3744e92184dbdd74429bb72667
   - enabled: 1
     path: Assets/2 MainGame/Scenes/LivingRoom.unity
     guid: 67eccfb6aef17f54faf60f812b35bd1a

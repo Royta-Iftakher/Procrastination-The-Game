@@ -91,6 +91,7 @@ public class PauseMenu : MonoBehaviour
             GameManager.Instance.inTask = false;
         }
         Resume();
+        AudioManager.instance.DisableAudioSource("MainGameMusic");
         AudioManager.instance.PlayOpenBook();
         SceneManager.LoadScene("Menu");
         GameTimer.Instance.timerReset();

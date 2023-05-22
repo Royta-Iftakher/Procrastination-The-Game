@@ -11,6 +11,11 @@ public class Phone : MonoBehaviour
     private bool phonePulled = false;
     private RectTransform rectTransform;
 
+    public Slider callSlider;
+    public Image phoneImage;
+
+    public Sprite[] phoneSprites;
+
     private void Start()
     {
         rectTransform = GetComponent<RectTransform>();
@@ -25,8 +30,13 @@ public class Phone : MonoBehaviour
 
         // Adjust hoverMoveDistance relative to screen height
         phoneOutPosition = new Vector3(originalPosition.x, originalPosition.y + hoverMoveDistance, originalPosition.z);
-    }
 
+        callSlider.onValueChanged.AddListener(OnSliderValueChanged);
+        if(GameManager.Instance.phoneAnswered == true) {
+            callSlider.gameObject.SetActive(false);
+            phoneImage.sprite = phoneSprites[2];
+        }
+    }
 
     private void Update()
     {
@@ -70,5 +80,37 @@ public class Phone : MonoBehaviour
         }
 
         rectTransform.anchoredPosition = targetPosition;
+    }
+
+    private void OnSliderValueChanged(float value)
+    {
+        // If the slider's value is 1
+        if(value == 1)
+        {
+            AudioManager.instance.PhoneCall();
+            Debug.Log("The slider's value is 1. A function might be called here later.");
+
+            if(phoneSprites.Length > 1) {
+                phoneImage.sprite = phoneSprites[1];  // Set to second sprite as soon as the slider is swiped
+            }
+
+            // Hide the slider
+            callSlider.gameObject.SetActive(false);
+            GameManager.Instance.phoneAnswered = true;
+
+            // Start the coroutine to wait for the sound to finish
+            StartCoroutine(WaitForSound(AudioManager.instance.GetCurrentClipLength()));
+        }
+    }
+
+    private IEnumerator WaitForSound(float length)
+    {
+        // Wait for the length of the sound
+        yield return new WaitForSeconds(length);
+
+        // Change the image to the third sprite after the sound finishes
+        if(phoneSprites.Length > 2) {
+            phoneImage.sprite = phoneSprites[2];
+        }
     }
 }

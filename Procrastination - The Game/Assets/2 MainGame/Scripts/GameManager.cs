@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour
     private PlayerMovement player;
     private Energy energy;
 
+    public bool phoneAnswered = false;
+
     void Awake()
     {
         if (_instance != null && _instance != this)
@@ -68,6 +70,7 @@ public class GameManager : MonoBehaviour
     public void sceneLoader() 
     {
         allObjects = GameObject.FindObjectsOfType<GameObject>();
+        AudioManager.instance.DisableAudioSource("MainGameMusic");
         if(gameStarted == true) {
             player.DisablePlayerControls();
             GameTimer.Instance.DisableChildren();
@@ -84,6 +87,7 @@ public class GameManager : MonoBehaviour
 
     public void sceneFinisher()
     {
+        AudioManager.instance.EnableAudioSource("MainGameMusic");
         foreach (GameObject obj in allObjects)
         {
             if (obj.CompareTag("GameManager") || obj.CompareTag("Player"))
@@ -105,6 +109,7 @@ public class GameManager : MonoBehaviour
             sceneFinisher();
         }
         if(win == true && endScene == false) {
+            AudioManager.instance.DisableAudioSource("MainGameMusic");
             GameTimer.Instance.DisableChildren();
             Time.timeScale = 1f;
             GameTimer.Instance.PauseTime();
@@ -116,6 +121,7 @@ public class GameManager : MonoBehaviour
             player = FindObjectOfType<PlayerMovement>();
         }
         if(lose == true && endScene == false) {
+            AudioManager.instance.DisableAudioSource("MainGameMusic");
             GameTimer.Instance.DisableChildren();
             Time.timeScale = 1f;
             GameTimer.Instance.PauseTime();
@@ -130,6 +136,7 @@ public class GameManager : MonoBehaviour
         GameTimer.Instance.DisableChildren();
         gameStarted = false;
         GameTimer.Instance.UnpauseTime();
+        GameTimer.Instance.extra = false;
         AudioManager.instance.EnableAudioSource("mainTheme");
         spawned = false;
         endScene = false;

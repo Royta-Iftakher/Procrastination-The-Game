@@ -15,6 +15,9 @@ public class GameTimer : MonoBehaviour
     private int timeScale = 60; // 1 real second = 1 in-game minute
     private float timeElapsed = 0.0f;
     private float dayDurationInSeconds =  720.0f * 60.0f; // 12 hours x 60 minutes x 60 seconds
+    public bool extra = false;
+    private float extraTimeElapsed = 0.0f;
+    private float extraIntervalInSeconds = 3.0f * 60.0f; // 3 minutes
 
     public float timeLeftInSeconds;
 
@@ -87,6 +90,20 @@ public class GameTimer : MonoBehaviour
             {
                 timeLeft = "You ran out of time";
                 GameManager.Instance.lose = true;
+            }
+
+            if(extra) //remember to add a customization, and a reset
+            {
+                // Increment extraTimeElapsed
+                extraTimeElapsed += deltaTime;
+                // If extraTimeElapsed >= extraIntervalInSeconds (3 minutes)
+                if(extraTimeElapsed >= extraIntervalInSeconds)
+                {
+                    // Call LoseEnergy(1)
+                    Energy.Instance.LoseEnergy(1);
+                    // Reset extraTimeElapsed
+                    extraTimeElapsed = 0.0f;
+                }
             }
         }
 

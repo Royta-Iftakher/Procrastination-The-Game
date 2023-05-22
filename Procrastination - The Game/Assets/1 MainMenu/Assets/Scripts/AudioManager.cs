@@ -8,6 +8,8 @@ public class AudioManager : MonoBehaviour
 
     public AudioClip openBook;
     public AudioClip defaultButton;
+    public AudioClip friendTalking;
+    public AudioSource MainGameMusic;
     public AudioSource mainTheme; 
 
     private AudioSource[] audioSources;
@@ -74,5 +76,47 @@ public class AudioManager : MonoBehaviour
     {
         PlaySound(defaultButton);
     }
+
+    public void PhoneCall()
+    {
+        PlaySound(friendTalking);
+    }
+
+    public float GetCurrentClipLength()
+    {
+        // Return the length of the phoneCallClip
+        if(friendTalking != null)
+        {
+            return friendTalking.length;
+        }
+
+        // Return 0 if there is no audio clip
+        return 0;
+    }
+
+    public void PauseAllAudio()
+    {
+        // Pause all active AudioSources
+        foreach (AudioSource source in audioSources)
+        {
+            if (source.isPlaying)
+            {
+                source.Pause();
+            }
+        }
+    }
+
+    public void ResumeAllAudio()
+    {
+        // Resume all active AudioSources
+        foreach (AudioSource source in audioSources)
+        {
+            if (!source.isPlaying)
+            {
+                source.UnPause();
+            }
+        }
+    }
+
 
 }

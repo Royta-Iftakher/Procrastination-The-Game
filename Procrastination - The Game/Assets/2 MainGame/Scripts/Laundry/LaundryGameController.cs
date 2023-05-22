@@ -61,7 +61,8 @@ public class LaundryGameController : MonoBehaviour
             //GameManager.Instance.spawnPoint = newSpawnPoint.position;
             player.isKickboard = false;
             player.KickBoard();
-            promptCanvas.SetActive(true);
+                    // Toggle the canvas on and off depending on its current state
+            promptCanvas.SetActive(!promptCanvas.activeSelf);
         }
     }
 }
