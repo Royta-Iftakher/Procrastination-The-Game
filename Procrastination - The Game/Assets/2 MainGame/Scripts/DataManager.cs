@@ -56,4 +56,9 @@ public class DataManager : MonoBehaviour
         return playerScore;
     }
 
+    public void ResetData()
+    {
+        Destroy(this.gameObject);
+    }
+
 }

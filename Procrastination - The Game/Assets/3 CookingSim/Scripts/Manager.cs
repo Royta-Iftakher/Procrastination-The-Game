@@ -125,6 +125,14 @@ public class Manager : MonoBehaviour
 
     public void RestartGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);    
+        SceneManager.UnloadSceneAsync(GameManager.Instance.sceneName);
+        SceneManager.LoadScene(GameManager.Instance.sceneName, LoadSceneMode.Additive);    
+    }
+
+    public void FoodComplete() {
+        
+        GameManager.Instance.gameFinished = true;         // set the gameFinished flag in the GameManager
+        PauseMenu.Instance.foodSim(true);                   
+        SceneManager.UnloadSceneAsync("CookingSimulator");               // unload the current scene
     }
 }

@@ -9,12 +9,14 @@ public class MenuScript : MonoBehaviour
     public void PlayGame()
     {
         AudioManager.instance.DisableAudioSource("mainTheme");
-        AudioManager.instance.PlayOpenBook();
         GameTimer.Instance.EnableChildren();
         GameTimer.Instance.ResetTimer();
         Score.Instance.ResetScores();
         GameManager.Instance.gameStarted = true;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        int selectedWatchIndex = GameTimer.Instance.GetSelectedWatch();
+        Watch watch = FindObjectOfType<Watch>();  // Finds the first Watch object in the scene - adjust if necessary
+        watch.SetWatch(selectedWatchIndex);
+        SceneManager.LoadScene("Outside");
         Time.timeScale = 1f;
     }
 
@@ -52,6 +54,20 @@ public class MenuScript : MonoBehaviour
         AudioManager.instance.PlayDefaultButton();
         GameManager.Instance.sceneLoader();
         SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
+    }
+
+    public void OnStartButtonClick() {
+        sceneName = "Customization";
+        DataManager.Instance.ResetData();
+        GameTimer.Instance.ResetData();
+        AudioManager.instance.PlayOpenBook();
+        GameManager.Instance.sceneLoader();
+        SceneManager.LoadScene(sceneName);
+    }
+
+    public void OnCustomizationMenuClick() {
+        AudioManager.instance.PlayOpenBook();
+        SceneManager.LoadScene("Menu");
     }
 
 }

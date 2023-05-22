@@ -1,11 +1,10 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class Phone : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
+public class Phone : MonoBehaviour
 {
-    public float hoverMoveDistance = 10f;
+    private float hoverMoveDistance = 600f;
     private Vector3 originalPosition;
     private Vector3 phoneOutPosition;
 
@@ -15,9 +14,19 @@ public class Phone : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, I
     private void Start()
     {
         rectTransform = GetComponent<RectTransform>();
-        originalPosition = rectTransform.position;
+        
+        // Set the anchor and pivot to bottom-right
+        rectTransform.anchorMin = new Vector2(.90f, 0);  // bottom-right
+        rectTransform.anchorMax = new Vector2(.90f, 0);  // bottom-right
+        rectTransform.pivot = new Vector2(.90f, 0);  // bottom-right
+
+        // Update original position after setting anchor and pivot
+        originalPosition = rectTransform.anchoredPosition;
+
+        // Adjust hoverMoveDistance relative to screen height
         phoneOutPosition = new Vector3(originalPosition.x, originalPosition.y + hoverMoveDistance, originalPosition.z);
     }
+
 
     private void Update()
     {
@@ -34,31 +43,6 @@ public class Phone : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, I
         }
     }
 
-    // When the mouse enters the phone
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        StopAllCoroutines();
-        StartCoroutine(MovePhone(originalPosition + new Vector3(0, hoverMoveDistance, 0), 0.25f));
-    }
-
-    // When the mouse exits the phone
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        StopAllCoroutines();
-        StartCoroutine(MovePhone(originalPosition, 0.25f));
-    }
-
-    // When the phone is clicked
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        OpenPhone();
-    }
-
-    public void OnCloseButtonClicked()
-    {
-        ClosePhone();
-    }
-
     private void OpenPhone()
     {
         StopAllCoroutines();
@@ -73,18 +57,18 @@ public class Phone : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, I
         phonePulled = false;
     }
 
-    IEnumerator MovePhone(Vector3 targetPosition, float duration) // this has been changed to expect a Vector3
+    IEnumerator MovePhone(Vector3 targetPosition, float duration) 
     {
         float time = 0;
-        Vector3 startPosition = rectTransform.position;
+        Vector3 startPosition = rectTransform.anchoredPosition;
 
         while (time < duration)
         {
             time += Time.deltaTime;
-            rectTransform.position = Vector3.Lerp(startPosition, targetPosition, time / duration);
+            rectTransform.anchoredPosition = Vector3.Lerp(startPosition, targetPosition, time / duration);
             yield return null;
         }
 
-        rectTransform.position = targetPosition;
+        rectTransform.anchoredPosition = targetPosition;
     }
 }

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Energy : MonoBehaviour
 {
+    public static Energy Instance { get; private set; }
+
     [SerializeField] private float startingEnergy;
     public float currentEnergy; //{get; private set;}
     public PlayerMovement player;
@@ -11,7 +13,14 @@ public class Energy : MonoBehaviour
 
     private void Awake()
     {
-        currentEnergy  = startingEnergy;
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+        Instance = this;
+
+        currentEnergy = startingEnergy;
     }
 
     public void LoseEnergy(float _energy) {
@@ -23,8 +32,11 @@ public class Energy : MonoBehaviour
         else {
             player.Die();
             playerAlive = false;
-            
         }
+    }
+
+    public void GainEnergy(float amount) {
+        currentEnergy = Mathf.Clamp(currentEnergy + amount, 0, startingEnergy);
     }
 
     // Start is called before the first frame update
@@ -40,13 +52,10 @@ public class Energy : MonoBehaviour
             currentEnergy = startingEnergy;
             playerAlive = true;
             player.Restart();
-            
         }
         if(player == null) {
             player = FindObjectOfType<PlayerMovement>();
         }
-
-        // Check if 'K' key is pressed
     }
 
     void noEnergyLeft() {

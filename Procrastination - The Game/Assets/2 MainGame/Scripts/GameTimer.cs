@@ -6,6 +6,7 @@ using TMPro;
 public class GameTimer : MonoBehaviour
 {
     public static GameTimer Instance { get; private set; }
+    [SerializeField] private int selectedWatchIndex = 0;
 
     public string timeLeft;
     [SerializeField] private TextMeshProUGUI timeText;
@@ -140,6 +141,7 @@ public class GameTimer : MonoBehaviour
             if(child.childCount > 0)
             {
                 EnableChildren(child);
+
             }
         }
     }
@@ -149,6 +151,21 @@ public class GameTimer : MonoBehaviour
     }
     public void DisableChildren() {
         DisableChildren(transform);
+    }
+
+    public void SetSelectedWatch(int index) // Add this
+    {
+        selectedWatchIndex = index;
+    }
+
+    public int GetSelectedWatch() // Add this
+    {
+        return selectedWatchIndex;
+    }
+
+    public void ResetData()
+    {
+        Destroy(this.gameObject);
     }
 
 

@@ -21,6 +21,7 @@ public class PauseMenu : MonoBehaviour
     public bool readDone;
     public bool emailsDone;
     public bool laundryDone;
+    public bool foodCooked;
 
     [SerializeField] private Toggle trashToggle;
     [SerializeField] private Toggle readToggle;
@@ -53,6 +54,7 @@ public class PauseMenu : MonoBehaviour
         readDone = false;
         emailsDone = false;
         laundryDone = false;
+        foodCooked = false;
 
         laundryToggle.onValueChanged.AddListener(laundryTask);
         trashToggle.onValueChanged.AddListener(trashTask);
@@ -100,6 +102,7 @@ public class PauseMenu : MonoBehaviour
 
     public void trashTask(bool isComplete)
     {
+        GameManager.Instance.inTask = false;
         trashDone = isComplete;
         Debug.Log("Trash completed");
         energy.LoseEnergy(2);
@@ -108,11 +111,15 @@ public class PauseMenu : MonoBehaviour
 
     public void readTask(bool isComplete)
     {
+        GameManager.Instance.inTask = false;
         readDone = isComplete;
+        energy.LoseEnergy(2);
+        score.AddScore("read");
     }
 
     public void emailsTask(bool isComplete) 
     {
+        GameManager.Instance.inTask = false;
         emailsDone = isComplete;
         Debug.Log("Emails completed");
         energy.LoseEnergy(2);
@@ -126,6 +133,13 @@ public class PauseMenu : MonoBehaviour
         laundryBasket.EmptyBasket();
         energy.LoseEnergy(1);
         score.AddScore("laundry");
+    }
+
+    public void foodSim(bool isComplete) {
+        GameManager.Instance.inTask = false;
+        foodCooked = isComplete;
+        energy.GainEnergy(2);
+        score.AddScore("food");
     }
 
     public void UpdateToggleUI()
