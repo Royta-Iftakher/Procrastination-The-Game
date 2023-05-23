@@ -36,12 +36,12 @@ public class QuizManager : MonoBehaviour
     }
 
     void setAnswers(){
-        for(int i = 0; i < options.Length; i++)
+        for (int i = 0; i < options.Length; i++)
         {
             options[i].GetComponent<Answers>().isCorrect = false;
             options[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = QuesAnswer[currentQuestion].Answers[i];
 
-            if(QuesAnswer[currentQuestion].CorrectAnswer == i+1)
+            if (QuesAnswer[currentQuestion].CorrectAnswer == i)
             {
                 options[i].GetComponent<Answers>().isCorrect = true;
             }

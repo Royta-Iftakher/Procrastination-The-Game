@@ -30,8 +30,8 @@ public class Energy : MonoBehaviour
             player.Hurt();
         }
         else {
-            player.Die();
             playerAlive = false;
+            noEnergyLeft();
         }
     }
 
@@ -42,16 +42,15 @@ public class Energy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        GameManager.Instance.outofEnergy = false;
     }
 
     // Update is called once per frame
     void Update()
     {
         if (currentEnergy <= 0 && playerAlive == false) {
-            currentEnergy = startingEnergy;
+            currentEnergy = 3.0f;
             playerAlive = true;
-            player.Restart();
         }
         if(player == null) {
             player = FindObjectOfType<PlayerMovement>();
@@ -59,6 +58,6 @@ public class Energy : MonoBehaviour
     }
 
     void noEnergyLeft() {
-        GameManager.Instance.lose = true;
+        GameManager.Instance.outofEnergy = true;
     }
 }

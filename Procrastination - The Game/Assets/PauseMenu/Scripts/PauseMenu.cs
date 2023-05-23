@@ -22,6 +22,7 @@ public class PauseMenu : MonoBehaviour
     public bool emailsDone;
     public bool laundryDone;
     public bool foodCooked;
+    public bool socializingDone;
 
     [SerializeField] private Toggle trashToggle;
     [SerializeField] private Toggle readToggle;
@@ -55,6 +56,7 @@ public class PauseMenu : MonoBehaviour
         emailsDone = false;
         laundryDone = false;
         foodCooked = false;
+        socializingDone = false;
 
         laundryToggle.onValueChanged.AddListener(laundryTask);
         trashToggle.onValueChanged.AddListener(trashTask);
@@ -75,7 +77,7 @@ public class PauseMenu : MonoBehaviour
                 Pause();
             }
         }
-        if(trashDone && emailsDone && laundryDone) {
+        if(trashDone && emailsDone && laundryDone && readDone) {
             GameManager.Instance.win = true;
             Resume();
         }
@@ -93,6 +95,7 @@ public class PauseMenu : MonoBehaviour
         Resume();
         AudioManager.instance.DisableAudioSource("MainGameMusic");
         AudioManager.instance.PlayOpenBook();
+        Phone.Instance.DestroyInstance();
         SceneManager.LoadScene("Menu");
         GameTimer.Instance.timerReset();
         Score.Instance.ResetScores();
@@ -143,6 +146,12 @@ public class PauseMenu : MonoBehaviour
         score.AddScore("food");
     }
 
+    public void socialTask(bool isComplete) {
+        socializingDone = isComplete;
+        energy.GainEnergy(2);
+        score.AddScore("socialize");
+    }
+
     public void UpdateToggleUI()
     {
         trashToggle.SetIsOnWithoutNotify(trashDone);
@@ -158,6 +167,7 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         UpdateToggleUI();
+        AudioManager.instance.ResumeAllAudio();
         
     }
 
@@ -168,6 +178,7 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         UpdateToggleUI();
+        AudioManager.instance.PauseAllAudio();
     }
 
     public void emailsFail() 

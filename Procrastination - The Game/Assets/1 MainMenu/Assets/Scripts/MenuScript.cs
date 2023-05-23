@@ -10,6 +10,8 @@ public class MenuScript : MonoBehaviour
     {
         AudioManager.instance.DisableAudioSource("mainTheme");
         AudioManager.instance.EnableAudioSource("MainGameMusic");
+        GameManager.Instance.outside = true;
+        GameManager.Instance.inside = false;
         GameTimer.Instance.EnableChildren();
         GameTimer.Instance.ResetTimer();
         Score.Instance.ResetScores();

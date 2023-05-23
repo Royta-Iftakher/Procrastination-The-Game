@@ -84,13 +84,15 @@ private string[] noOptions = {
 
     public void showPrompt()
     {
+        if(!GameManager.Instance.socialSwitch) {
         // Choose random Yes and No options
-        string yesOption = yesOptions[rand.Next(yesOptions.Length)];
-        string noOption = noOptions[rand.Next(noOptions.Length)];
+            string yesOption = yesOptions[rand.Next(yesOptions.Length)];
+            string noOption = noOptions[rand.Next(noOptions.Length)];
 
-        // Update the Yes and No option text
-        yesOptionText.text = yesOption;
-        noOptionText.text = noOption;
+            // Update the Yes and No option text
+            yesOptionText.text = yesOption;
+            noOptionText.text = noOption;
+        }
 
         // Show the buttons
         yesButton.gameObject.SetActive(true);

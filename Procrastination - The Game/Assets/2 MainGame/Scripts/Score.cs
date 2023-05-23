@@ -27,14 +27,14 @@ public class Score : MonoBehaviour
 
         letterGrade = 5;
         // Initialize activities and their points
-        activityPoints.Add("trash", 15);
+        activityPoints.Add("trash", 20);
         activityPoints.Add("email", 20);
-        activityPoints.Add("read", 15);
-        activityPoints.Add("laundry", 10);
-        activityPoints.Add("food", 10);
+        activityPoints.Add("read", 20);
+        activityPoints.Add("laundry", 15);
+        activityPoints.Add("food", 15);
         activityPoints.Add("socialize", 10);
-        activityPoints.Add("games", 10);
-        activityPoints.Add("exercise", 10);
+        //activityPoints.Add("games", 10);
+        //activityPoints.Add("exercise", 10);
 
         // Initialize the scores and done statuses
         foreach(string activity in activityPoints.Keys)

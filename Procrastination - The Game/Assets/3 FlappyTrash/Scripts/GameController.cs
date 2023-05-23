@@ -82,6 +82,7 @@ public class GameController : MonoBehaviour
 
     public void IncreaseScore()                                     // method for increasing the score
     {
+        AudioManager.instance.Point();
         score++;                                                    // increase the score by 1
         scoreText.text = score.ToString();                          // update the score text on screen
         if(score == 10 && lose == false) {                           // if the score is 10 and the lose flag is false
@@ -112,6 +113,9 @@ public class GameController : MonoBehaviour
     {
         if(!gameStart) {
             Time.timeScale = 0f;
+        }
+        if(lose) {
+            Pause();
         }
     }
 

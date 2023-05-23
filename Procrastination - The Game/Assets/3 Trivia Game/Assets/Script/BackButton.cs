@@ -13,6 +13,7 @@ public class BackButton : MonoBehaviour
 
     public void goBack() {
         
+        PauseMenu.Instance.readTask(true);
         GameManager.Instance.gameFinished = true;
         SceneManager.UnloadSceneAsync(GameManager.Instance.sceneName);
     }

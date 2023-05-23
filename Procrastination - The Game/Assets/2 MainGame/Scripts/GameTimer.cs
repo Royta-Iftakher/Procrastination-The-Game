@@ -185,5 +185,31 @@ public class GameTimer : MonoBehaviour
         Destroy(this.gameObject);
     }
 
+    public void FastForwardTime()
+    {
+        // Calculate the time to fast forward in seconds
+        float fastForwardDurationInSeconds = 2 * 60 * 60; // 2 hours * 60 minutes * 60 seconds
+
+        // Check if time will exceed the time limit
+        if (timeElapsed + fastForwardDurationInSeconds >= dayDurationInSeconds)
+        {
+            timeLeft = "You ran out of time";
+            GameManager.Instance.lose = true;
+        }
+        else
+        {
+            // Add the fast forward duration to the time elapsed
+            timeElapsed += fastForwardDurationInSeconds;
+
+            // Update the time based on the new time elapsed
+            minutes = (int)(timeElapsed / 60.0f) % 60;
+            hours = (10 + (int)(timeElapsed / 3600.0f)) % 12;
+
+            // Update the time text
+            UpdateTimeText();
+        }
+    }
+
+
 
 }

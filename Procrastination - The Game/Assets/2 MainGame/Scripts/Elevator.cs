@@ -43,7 +43,14 @@ public class Elevator : MonoBehaviour
         if (showGui && Input.GetKeyDown(KeyCode.E)) 
         {
             //GameManager.Instance.spawnPoint = newSpawnPoint.position;
-
+            if(sceneToLoad == "Outside") {
+                GameManager.Instance.outside = true;
+                GameManager.Instance.inside = false;
+            }
+            else {
+                GameManager.Instance.outside = false;
+                GameManager.Instance.inside = true;
+            }
             SceneManager.LoadScene(sceneToLoad);
         }
     }

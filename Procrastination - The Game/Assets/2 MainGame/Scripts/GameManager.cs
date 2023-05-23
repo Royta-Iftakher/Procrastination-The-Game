@@ -20,7 +20,13 @@ public class GameManager : MonoBehaviour
     public bool lose;
     private PlayerMovement player;
     private Energy energy;
+    public bool outofEnergy = false;
+    public bool sleep = false;
+    public bool inside;
+    public bool outside;
+    public bool socialSwitch = false;
 
+    public bool phoneFinished = false;
     public bool phoneAnswered = false;
 
     void Awake()
@@ -70,10 +76,11 @@ public class GameManager : MonoBehaviour
     public void sceneLoader() 
     {
         allObjects = GameObject.FindObjectsOfType<GameObject>();
-        AudioManager.instance.DisableAudioSource("MainGameMusic");
+        
         if(gameStarted == true) {
             player.DisablePlayerControls();
             GameTimer.Instance.DisableChildren();
+            AudioManager.instance.DisableAudioSource("MainGameMusic");
         }
         foreach (GameObject obj in allObjects)
         {
@@ -87,7 +94,7 @@ public class GameManager : MonoBehaviour
 
     public void sceneFinisher()
     {
-        AudioManager.instance.EnableAudioSource("MainGameMusic");
+        
         foreach (GameObject obj in allObjects)
         {
             if (obj.CompareTag("GameManager") || obj.CompareTag("Player"))
@@ -99,6 +106,7 @@ public class GameManager : MonoBehaviour
         if(gameStarted) {
             player.EnablePlayerControls();
             GameTimer.Instance.EnableChildren();
+            AudioManager.instance.EnableAudioSource("MainGameMusic");
         }
     }
 
@@ -115,6 +123,7 @@ public class GameManager : MonoBehaviour
             GameTimer.Instance.PauseTime();
             SceneManager.LoadScene("End");
             PauseMenu.Instance.Restart();
+            Phone.Instance.DestroyInstance();
             endScene = true;
         }
         if(player == null) {
@@ -127,7 +136,45 @@ public class GameManager : MonoBehaviour
             GameTimer.Instance.PauseTime();
             SceneManager.LoadScene("End");
             PauseMenu.Instance.Restart();
+            Phone.Instance.DestroyInstance();
             endScene = true;
+        }
+        if (outofEnergy && !sleep)
+        {
+            PauseMenu.Instance.Resume();
+            GameObject destinationObject = GameObject.FindGameObjectWithTag("Bed");
+            if (inside)
+            {
+                   // Find the teleport destination object by tag
+                if (destinationObject != null)
+                {
+                    // Teleport the player to the teleport destination object
+                    player.transform.position = destinationObject.transform.position;
+                }
+                else
+                {
+                    Debug.LogError("Teleport destination object not found!");
+                }
+                Invoke("Nap", 0.1f);
+                sleep = true;
+            }
+            else
+            {
+                SceneManager.LoadScene("Inside");      
+                destinationObject = GameObject.FindGameObjectWithTag("Bed");          
+                // Find the teleport destination object by tag
+                if (destinationObject != null)
+                {
+                    // Teleport the player to the teleport destination object
+                    player.transform.position = destinationObject.transform.position;
+                }
+                else
+                {
+                    destinationObject = GameObject.FindGameObjectWithTag("Bed"); 
+                }
+                Invoke("Nap", 0.1f);
+                sleep = true;
+            }
         }
     }
 
@@ -143,8 +190,22 @@ public class GameManager : MonoBehaviour
         win = false;
         lose = false;
         energy.currentEnergy = 5;
+        phoneAnswered = false;
+        phoneFinished = false;
     }
 
+    public void WakeUp() {
+        outofEnergy = false;
+        sleep = false;
+        sceneFinisher();
+        SceneManager.UnloadSceneAsync("Sleep");
+        GameObject destinationObject = GameObject.FindGameObjectWithTag("Bed");
+        player.transform.position = destinationObject.transform.position;
+    }
     
+    public void Nap() {
+        sceneLoader();
+        SceneManager.LoadScene("Sleep", LoadSceneMode.Additive);
+    }
     
 }
