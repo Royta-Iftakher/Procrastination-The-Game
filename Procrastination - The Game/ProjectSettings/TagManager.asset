@@ -9,11 +9,21 @@ TagManager:
   - LoadScene
   - Ground
   - Door
+  - GameManager
+  - Music
+  - Timer
+  - Manager
+  - List Element
+  - PauseMenu
+  - AudioManager
+  - Prompt
+  - Background
+  - Bed
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Background
   - Water
   - UI
   - 
@@ -43,6 +53,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: clouds
+    uniqueID: 2498294553
+    locked: 0
+  - name: background
+    uniqueID: 4034228063
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
