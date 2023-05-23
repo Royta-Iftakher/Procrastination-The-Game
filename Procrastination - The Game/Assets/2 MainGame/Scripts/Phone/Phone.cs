@@ -11,8 +11,8 @@ public class Phone : MonoBehaviour
     private Vector3 phoneOutPosition;
 
     private bool phonePulled = false;
-    private bool inCall;
-    private bool messages;
+    public bool inCall = false;
+    private bool messages = false;
 
     private RectTransform rectTransform; // The RectTransform of the phone object
 
@@ -68,7 +68,9 @@ public class Phone : MonoBehaviour
         {
             // Show the phone when emails are done
             phoneObject.SetActive(true);
-            AudioManager.instance.PhoneRinging(); // Play phone ringing sound
+            if(!messages) {
+                AudioManager.instance.PhoneRinging(); // Play phone ringing sound
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.P))
@@ -82,6 +84,7 @@ public class Phone : MonoBehaviour
                 OpenPhone();
             }
         }
+
 
         //if(!inCall &&  GameManager.Instance.phoneAnswered = true;) {   
         //}
@@ -170,7 +173,8 @@ public class Phone : MonoBehaviour
         if(phoneSprites.Length > 2) {
             phoneImage.sprite = phoneSprites[2];
         }
-        
+        messages = true;
+        GameManager.Instance.phoneFinished = true;
         // Call is over
         inCall = false;
     }
@@ -182,25 +186,35 @@ public class Phone : MonoBehaviour
         Destroy(this.gameObject);
     }
 
-    private void GoToMessages()
-    {
-        if(phoneSprites.Length > 3) {
-            phoneImage.sprite = phoneSprites[3]; // Set to fourth sprite for messages
-            GameManager.Instance.phoneFinished = true;
-        }
-    }
-
     public void EndCall()
     {
         AudioManager.instance.ButtonClick();
         AudioManager.instance.StopSound(AudioManager.instance.friendTalking); // Assuming you have a method to stop the current audio clip
         phoneImage.sprite = phoneSprites[2];
         inCall = false;
+        messages = true;
         //GoToMessages();
         GameManager.Instance.phoneFinished = true;
         // Disable the transcript object
         endCallButton.SetActive(false);
         transcriptObject.SetActive(false);
     }
+
+public void TogglePhone()
+{
+    if (phonePulled)
+    {
+        ClosePhone();
+        // Change button text to "v" when phone is closed
+        
+    }
+    else
+    {
+        OpenPhone();
+        // Change button text to "^" when phone is opened
+        
+    }
+}
+
 
 }

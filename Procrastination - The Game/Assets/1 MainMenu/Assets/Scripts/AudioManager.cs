@@ -16,6 +16,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip phoneRinging; // New audio clip for phone ringing
     public AudioSource MainGameMusic;
     public AudioSource mainTheme;
+    public AudioSource restaurant;
 
     private AudioSource[] audioSources;
     [SerializeField] private AudioMixer audioMixer;

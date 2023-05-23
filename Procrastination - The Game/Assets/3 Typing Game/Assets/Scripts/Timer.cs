@@ -28,6 +28,15 @@ public class Timer : MonoBehaviour
             audio = GetComponent<AudioSource>();
          
         orangeColor = new Color(1.0f, 0.5f, 0.0f, 1.0f);
+        if(PauseMenu.Instance.emailsFailed==0) {
+            currentTime = 90;
+        }
+        else if(PauseMenu.Instance.emailsFailed==1) {
+            currentTime = 120;
+        }
+        else if(PauseMenu.Instance.emailsFailed==2) {
+            currentTime = 150;
+        }
     }
 
     // Update is called once per frame

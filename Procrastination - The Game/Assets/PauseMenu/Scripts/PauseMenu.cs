@@ -29,7 +29,7 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private Toggle emailsToggle;
     [SerializeField] private Toggle laundryToggle;
     
-
+    public int emailsFailed = 0;
 
 
     private void Awake()
@@ -184,6 +184,7 @@ public class PauseMenu : MonoBehaviour
     public void emailsFail() 
     {
         energy.LoseEnergy(2);
+        emailsFailed++;
     }
 
     public void Restart()

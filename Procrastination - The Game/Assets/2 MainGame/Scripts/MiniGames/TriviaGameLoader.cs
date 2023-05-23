@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class TriviaGameLoader : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class TriviaGameLoader : MonoBehaviour
     private Prompt prompt;
 
     private Collider2D customCollider2D; // Cache the Collider2D component
+    public TextMeshProUGUI popupText;
 
     private void Start()
     {
@@ -75,8 +77,34 @@ public class TriviaGameLoader : MonoBehaviour
                 player.isKickboard = false;
                 player.KickBoard();
                 GameManager.Instance.sceneName = sceneToLoad;
-                prompt.showPrompt();
+
+                if(!Phone.Instance.inCall) {
+                    prompt.showPrompt();
+                }
+                else {
+                    StartCoroutine(ShowPopupText("Finish the Call", 2f)); // Show the popup text for 2 seconds
+                }
             }
         }
+    }
+
+        IEnumerator ShowPopupText(string text, float duration)
+    {
+        // Set the popup text
+        popupText.text = text;
+        // Show the popup text
+        popupText.gameObject.SetActive(true);
+
+        // Wait for the specified duration
+        yield return new WaitForSeconds(duration);
+
+        // Hide the popup text
+        HidePopupText();
+    }
+
+    void HidePopupText()
+    {
+        // Hide the popup text
+        popupText.gameObject.SetActive(false);
     }
 }
